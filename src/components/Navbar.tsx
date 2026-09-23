@@ -20,25 +20,60 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState<'hero' | 'how-it-works' | 'solutions'>('hero');
   const dropdownRef = useRef<HTMLDivElement>(null);
   
   const { language, setLanguage, t, languages, currentLanguageOption } = useLanguage();
 
-  // Scroll listener to smoothly transition navbar from transparent to solid dark when scrolling past hero
+  // Scroll listener to smoothly transition navbar from transparent to solid dark and track active section
   useEffect(() => {
     const handleScroll = () => {
-      // If we scroll beyond 70px (or on non-home page), activate dark mode navbar
+      // If we scroll beyond 60px (or on non-home page), activate dark mode navbar
       if (window.scrollY > 60) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
+      }
+
+      // Track active section on HomePage
+      if (currentPage === 'home') {
+        const solutionsEl = document.getElementById('solutions');
+        const howItWorksEl = document.getElementById('how-it-works');
+
+        const scrollPos = window.scrollY + 180;
+
+        if (solutionsEl && solutionsEl.offsetTop <= scrollPos) {
+          setActiveSection('solutions');
+        } else if (howItWorksEl && howItWorksEl.offsetTop <= scrollPos) {
+          setActiveSection('how-it-works');
+        } else {
+          setActiveSection('hero');
+        }
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Initial check
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [currentPage]);
+
+  // Sync with window.location.hash on mount or hashchange
+  useEffect(() => {
+    const handleHash = () => {
+      if (currentPage === 'home') {
+        const hash = window.location.hash.replace('#', '');
+        if (hash === 'how-it-works' || hash === 'solutions') {
+          setActiveSection(hash);
+        } else if (!hash) {
+          setActiveSection('hero');
+        }
+      }
+    };
+
+    window.addEventListener('hashchange', handleHash);
+    handleHash();
+    return () => window.removeEventListener('hashchange', handleHash);
+  }, [currentPage]);
 
   // Close language dropdown on outside click
   useEffect(() => {
@@ -87,7 +122,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button 
             onClick={() => handleNavClick('home')}
             className={`transition-all py-1.5 px-3 rounded-full cursor-pointer ${
-              currentPage === 'home'
+              currentPage === 'home' && activeSection === 'hero'
                 ? showSolidBackground 
                   ? 'text-blue-300 font-semibold bg-blue-600/15 border border-blue-500/30' 
                   : 'text-white font-semibold bg-white/10 backdrop-blur-md border border-white/15'
@@ -99,14 +134,26 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           <button 
             onClick={() => handleNavClick('home', 'how-it-works')}
-            className="hover:text-blue-400 text-slate-300 hover:text-white transition-colors cursor-pointer py-1.5 px-3 rounded-full hover:bg-white/5"
+            className={`transition-all py-1.5 px-3 rounded-full cursor-pointer ${
+              currentPage === 'home' && activeSection === 'how-it-works'
+                ? showSolidBackground 
+                  ? 'text-blue-300 font-semibold bg-blue-600/15 border border-blue-500/30' 
+                  : 'text-white font-semibold bg-white/10 backdrop-blur-md border border-white/15'
+                : 'hover:text-blue-400 text-slate-300 hover:text-white hover:bg-white/5'
+            }`}
           >
             {t.nav.howItWorks}
           </button>
 
           <button 
             onClick={() => handleNavClick('home', 'solutions')}
-            className="hover:text-blue-400 text-slate-300 hover:text-white transition-colors cursor-pointer py-1.5 px-3 rounded-full hover:bg-white/5"
+            className={`transition-all py-1.5 px-3 rounded-full cursor-pointer ${
+              currentPage === 'home' && activeSection === 'solutions'
+                ? showSolidBackground 
+                  ? 'text-blue-300 font-semibold bg-blue-600/15 border border-blue-500/30' 
+                  : 'text-white font-semibold bg-white/10 backdrop-blur-md border border-white/15'
+                : 'hover:text-blue-400 text-slate-300 hover:text-white hover:bg-white/5'
+            }`}
           >
             {t.nav.solutions}
           </button>
@@ -244,8 +291,8 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button 
               onClick={() => handleNavClick('home')}
               className={`w-full py-2.5 px-3 rounded-xl transition-colors text-left ${
-                currentPage === 'home'
-                  ? 'bg-blue-600/20 text-blue-200 font-semibold'
+                currentPage === 'home' && activeSection === 'hero'
+                  ? 'bg-blue-600/20 text-blue-200 font-semibold border border-blue-500/30'
                   : 'hover:bg-blue-950/30'
               }`}
             >
@@ -253,13 +300,21 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
             <button 
               onClick={() => handleNavClick('home', 'how-it-works')}
-              className="w-full py-2.5 px-3 hover:bg-blue-950/30 rounded-xl transition-colors text-left"
+              className={`w-full py-2.5 px-3 rounded-xl transition-colors text-left ${
+                currentPage === 'home' && activeSection === 'how-it-works'
+                  ? 'bg-blue-600/20 text-blue-200 font-semibold border border-blue-500/30'
+                  : 'hover:bg-blue-950/30'
+              }`}
             >
               {t.nav.howItWorks}
             </button>
             <button 
               onClick={() => handleNavClick('home', 'solutions')}
-              className="w-full py-2.5 px-3 hover:bg-blue-950/30 rounded-xl transition-colors text-left"
+              className={`w-full py-2.5 px-3 rounded-xl transition-colors text-left ${
+                currentPage === 'home' && activeSection === 'solutions'
+                  ? 'bg-blue-600/20 text-blue-200 font-semibold border border-blue-500/30'
+                  : 'hover:bg-blue-950/30'
+              }`}
             >
               {t.nav.solutions}
             </button>
