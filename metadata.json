@@ -1,0 +1,6 @@
+{
+  "name": "SafeCompute — Sovereignty Layer for Autonomous AI Agents",
+  "description": "SafeCompute is the premier security infrastructure and mathematical sovereignty layer for autonomous AI Agents. Algebraic covariant obfuscation and hardware enclaves for zero-plaintext tensor inference in zero-trust clouds.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
