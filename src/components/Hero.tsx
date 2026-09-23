@@ -37,7 +37,7 @@ export const Hero: React.FC<HeroProps> = ({
           scale={0.45}
           swirl={0.31}
           swirlIterations={10}
-          grainOpacity={0.25}
+          grainOpacity={0.10}
         />
       </div>
 

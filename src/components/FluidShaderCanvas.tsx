@@ -2,10 +2,9 @@ import React, { useEffect, useRef } from 'react';
 
 interface FluidShaderCanvasProps {
   className?: string;
-  // Capital & Code exact color tokens
-  color1?: string; // Deep void obsidian/indigo: default 'rgb(21, 19, 38)'
-  color2?: string; // Electric royal/cyan blue: default 'rgb(28, 43, 255)'
-  color3?: string; // Crisp highlight: default 'rgb(255, 255, 255)'
+  color1?: string; // Deep void obsidian: 'rgb(10, 14, 26)'
+  color2?: string; // Capital & Code Electric Royal Blue: 'rgb(28, 43, 255)'
+  color3?: string; // Silk highlight: 'rgb(255, 255, 255)'
   speed?: number;
   scale?: number;
   swirl?: number;
@@ -17,7 +16,6 @@ interface FluidShaderCanvasProps {
   grainOpacity?: number;
 }
 
-// Parses hex, rgb, rgba into [r, g, b, a] in 0.0 - 1.0 range
 function parseColor(str: string, fallback: [number, number, number, number] = [0, 0, 0, 1]): [number, number, number, number] {
   if (!str) return fallback;
   const s = str.trim();
@@ -46,18 +44,18 @@ function parseColor(str: string, fallback: [number, number, number, number] = [0
 
 export const FluidShaderCanvas: React.FC<FluidShaderCanvasProps> = ({
   className = 'w-full h-full',
-  color1 = 'rgb(21, 19, 38)',
+  color1 = 'rgb(10, 14, 26)',
   color2 = 'rgb(28, 43, 255)',
   color3 = 'rgb(255, 255, 255)',
   speed = 0.53,
   scale = 0.45,
-  swirl = 0.31,
+  swirl = 0.35,
   swirlIterations = 10,
   distortion = 0.0,
   shapeScale = 0.10,
   softness = 1.0,
   proportion = 0.28,
-  grainOpacity = 0.25,
+  grainOpacity = 0.10,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -67,7 +65,7 @@ export const FluidShaderCanvas: React.FC<FluidShaderCanvasProps> = ({
 
     const gl = canvas.getContext('webgl2', {
       alpha: true,
-      antialias: true,
+      antialias: false,
       depth: false,
       preserveDrawingBuffer: false,
       powerPreference: 'high-performance',
@@ -82,7 +80,7 @@ export const FluidShaderCanvas: React.FC<FluidShaderCanvasProps> = ({
       gl_Position = vec4(a_position, 0.0, 1.0);
     }`;
 
-    // Exact Capital & Code GLSL Shader
+    // Authentic Capital & Code GLSL Fluid Wave Shader with In-Shader Instant Grain
     const fsSource = `#version 300 es
     precision highp float;
 
@@ -102,6 +100,7 @@ export const FluidShaderCanvas: React.FC<FluidShaderCanvasProps> = ({
     uniform float u_distortion;
     uniform float u_swirl;
     uniform float u_swirlIterations;
+    uniform float u_grain;
 
     out vec4 fragColor;
 
@@ -132,17 +131,17 @@ export const FluidShaderCanvas: React.FC<FluidShaderCanvasProps> = ({
     }
 
     vec4 blend_colors(vec4 c1, vec4 c2, vec4 c3, float mixer, float edgesWidth, float edge_blur) {
-      vec3 color1 = c1.rgb * c1.a;
-      vec3 color2 = c2.rgb * c2.a;
-      vec3 color3 = c3.rgb * c3.a;
+      vec3 col1 = c1.rgb * c1.a;
+      vec3 col2 = c2.rgb * c2.a;
+      vec3 col3 = c3.rgb * c3.a;
 
-      float r1 = smoothstep(.0 + .35 * edgesWidth, .7 - .35 * edgesWidth + .5 * edge_blur, mixer);
-      float r2 = smoothstep(.3 + .35 * edgesWidth, 1. - .35 * edgesWidth + edge_blur, mixer);
+      float r1 = smoothstep(0.0 + 0.35 * edgesWidth, 0.7 - 0.35 * edgesWidth + 0.5 * edge_blur, mixer);
+      float r2 = smoothstep(0.3 + 0.35 * edgesWidth, 1.0 - 0.35 * edgesWidth + edge_blur, mixer);
 
-      vec3 blended_color_2 = mix(color1, color2, r1);
+      vec3 blended_color_2 = mix(col1, col2, r1);
       float blended_opacity_2 = mix(c1.a, c2.a, r1);
 
-      vec3 c = mix(blended_color_2, color3, r2);
+      vec3 c = mix(blended_color_2, col3, r2);
       float o = mix(blended_opacity_2, c3.a, r2);
       return vec4(c, o);
     }
@@ -150,51 +149,57 @@ export const FluidShaderCanvas: React.FC<FluidShaderCanvasProps> = ({
     void main() {
       vec2 uv = gl_FragCoord.xy / u_resolution.xy;
 
-      float t = .5 * u_time;
-      float noise_scale = .0005 + .006 * u_scale;
+      float t = 0.5 * u_time;
+      float noise_scale = 0.0005 + 0.006 * u_scale;
 
-      uv -= .5;
+      uv -= 0.5;
       uv *= (noise_scale * u_resolution);
-      uv = rotate(uv, u_rotation * .5 * PI);
+      uv = rotate(uv, u_rotation * 0.5 * PI);
       uv /= u_pixelRatio;
-      uv += .5;
+      uv += 0.5;
 
-      float n1 = noise(uv * 1. + t);
-      float n2 = noise(uv * 2. - t);
+      float n1 = noise(uv * 1.0 + t);
+      float n2 = noise(uv * 2.0 - t);
       float angle = n1 * TWO_PI;
-      uv.x += 4. * u_distortion * n2 * cos(angle);
-      uv.y += 4. * u_distortion * n2 * sin(angle);
+      uv.x += 4.0 * u_distortion * n2 * cos(angle);
+      uv.y += 4.0 * u_distortion * n2 * sin(angle);
 
-      float iterations_number = ceil(clamp(u_swirlIterations, 1., 30.));
-      for (float i = 1.; i <= iterations_number; i++) {
-        uv.x += clamp(u_swirl, 0., 2.) / i * cos(t + i * 1.5 * uv.y);
-        uv.y += clamp(u_swirl, 0., 2.) / i * cos(t + i * 1. * uv.x);
+      float iterations_number = ceil(clamp(u_swirlIterations, 1.0, 20.0));
+      for (float i = 1.0; i <= iterations_number; i++) {
+        uv.x += clamp(u_swirl, 0.0, 2.0) / i * cos(t + i * 1.5 * uv.y);
+        uv.y += clamp(u_swirl, 0.0, 2.0) / i * cos(t + i * 1.0 * uv.x);
       }
 
-      float proportion = clamp(u_proportion, 0., 1.);
-      float shape = 0.;
-      float mixer = 0.;
+      float proportion = clamp(u_proportion, 0.0, 1.0);
+      float shape = 0.0;
+      float mixer = 0.0;
 
-      if (u_shape < .5) {
-        vec2 checks_shape_uv = uv * (.5 + 3.5 * u_shapeScale);
-        shape = .5 + .5 * sin(checks_shape_uv.x) * cos(checks_shape_uv.y);
-        mixer = shape + .48 * sign(proportion - .5) * pow(abs(proportion - .5), .5);
+      if (u_shape < 0.5) {
+        vec2 checks_shape_uv = uv * (0.5 + 3.5 * u_shapeScale);
+        shape = 0.5 + 0.5 * sin(checks_shape_uv.x) * cos(checks_shape_uv.y);
+        mixer = shape + 0.48 * sign(proportion - 0.5) * pow(abs(proportion - 0.5), 0.5);
       } else if (u_shape < 1.5) {
-        vec2 stripes_shape_uv = uv * (.25 + 3. * u_shapeScale);
+        vec2 stripes_shape_uv = uv * (0.25 + 3.0 * u_shapeScale);
         float f = fract(stripes_shape_uv.y);
-        shape = smoothstep(.0, .55, f) * smoothstep(1., .45, f);
-        mixer = shape + .48 * sign(proportion - .5) * pow(abs(proportion - .5), .5);
+        shape = smoothstep(0.0, 0.55, f) * smoothstep(1.0, 0.45, f);
+        mixer = shape + 0.48 * sign(proportion - 0.5) * pow(abs(proportion - 0.5), 0.5);
       } else {
-        float sh = 1. - uv.y;
-        sh -= .5;
+        float sh = 1.0 - uv.y;
+        sh -= 0.5;
         sh /= (noise_scale * u_resolution.y);
-        sh += .5;
-        float shape_scaling = .2 * (1. - u_shapeScale);
-        shape = smoothstep(.45 - shape_scaling, .55 + shape_scaling, sh + .3 * (proportion - .5));
+        sh += 0.5;
+        float shape_scaling = 0.2 * (1.0 - u_shapeScale);
+        shape = smoothstep(0.45 - shape_scaling, 0.55 + shape_scaling, sh + 0.3 * (proportion - 0.5));
         mixer = shape;
       }
 
-      vec4 color_mix = blend_colors(u_color1, u_color2, u_color3, mixer, 1. - clamp(u_softness, 0., 1.), .01 + .01 * u_scale);
+      vec4 color_mix = blend_colors(u_color1, u_color2, u_color3, mixer, 1.0 - clamp(u_softness, 0.0, 1.0), 0.01 + 0.01 * u_scale);
+
+      // Subtle, velvety organic micro-texture that preserves razor-sharp text clarity
+      if (u_grain > 0.001) {
+        float g = (random(gl_FragCoord.xy) - 0.5) * u_grain;
+        color_mix.rgb += g;
+      }
 
       fragColor = vec4(color_mix.rgb, color_mix.a);
     }`;
@@ -229,7 +234,6 @@ export const FluidShaderCanvas: React.FC<FluidShaderCanvasProps> = ({
 
     gl.useProgram(program);
 
-    // Fullscreen single triangle
     const positions = new Float32Array([
       -1, -1,
        3, -1,
@@ -247,7 +251,6 @@ export const FluidShaderCanvas: React.FC<FluidShaderCanvasProps> = ({
     gl.enableVertexAttribArray(posAttr);
     gl.vertexAttribPointer(posAttr, 2, gl.FLOAT, false, 0, 0);
 
-    // Get Uniform locations
     const uTime = gl.getUniformLocation(program, 'u_time');
     const uPixelRatio = gl.getUniformLocation(program, 'u_pixelRatio');
     const uResolution = gl.getUniformLocation(program, 'u_resolution');
@@ -263,8 +266,9 @@ export const FluidShaderCanvas: React.FC<FluidShaderCanvasProps> = ({
     const uDistortion = gl.getUniformLocation(program, 'u_distortion');
     const uSwirl = gl.getUniformLocation(program, 'u_swirl');
     const uSwirlIterations = gl.getUniformLocation(program, 'u_swirlIterations');
+    const uGrain = gl.getUniformLocation(program, 'u_grain');
 
-    const c1 = parseColor(color1, [21 / 255, 19 / 255, 38 / 255, 1.0]);
+    const c1 = parseColor(color1, [10 / 255, 14 / 255, 26 / 255, 1.0]);
     const c2 = parseColor(color2, [28 / 255, 43 / 255, 255 / 255, 1.0]);
     const c3 = parseColor(color3, [1.0, 1.0, 1.0, 1.0]);
 
@@ -274,7 +278,8 @@ export const FluidShaderCanvas: React.FC<FluidShaderCanvasProps> = ({
 
     const handleResize = () => {
       if (!canvas) return;
-      currentDpr = Math.min(window.devicePixelRatio || 1, 2);
+      // Cap DPR to 1.5 to guarantee buttery smooth 60 FPS on Retina screens without visual downgrade
+      currentDpr = Math.min(window.devicePixelRatio || 1, 1.5);
       const width = Math.floor(canvas.clientWidth * currentDpr);
       const height = Math.floor(canvas.clientHeight * currentDpr);
       if (canvas.width !== width || canvas.height !== height) {
@@ -285,32 +290,40 @@ export const FluidShaderCanvas: React.FC<FluidShaderCanvasProps> = ({
     };
 
     handleResize();
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize, { passive: true });
+
+    let lastTime = 0;
+    const targetFpsInterval = 1000 / 60; // 60 FPS capped loop
 
     const render = (now: number) => {
-      const elapsed = (now - startTime) * 0.001 * (speed * 0.5);
+      const delta = now - lastTime;
+      if (delta >= targetFpsInterval) {
+        lastTime = now - (delta % targetFpsInterval);
+        const elapsed = (now - startTime) * 0.001 * (speed * 0.5);
 
-      gl.useProgram(program);
-      gl.bindVertexArray(vao);
+        gl.useProgram(program);
+        gl.bindVertexArray(vao);
 
-      gl.uniform1f(uTime, elapsed);
-      gl.uniform1f(uPixelRatio, currentDpr);
-      gl.uniform2f(uResolution, canvas.width, canvas.height);
+        gl.uniform1f(uTime, elapsed);
+        gl.uniform1f(uPixelRatio, currentDpr);
+        gl.uniform2f(uResolution, canvas.width, canvas.height);
 
-      gl.uniform1f(uScale, scale);
-      gl.uniform1f(uRotation, 0.0);
-      gl.uniform4f(uColor1, c1[0], c1[1], c1[2], c1[3]);
-      gl.uniform4f(uColor2, c2[0], c2[1], c2[2], c2[3]);
-      gl.uniform4f(uColor3, c3[0], c3[1], c3[2], c3[3]);
-      gl.uniform1f(uProportion, proportion);
-      gl.uniform1f(uSoftness, softness);
-      gl.uniform1f(uShape, 0.0); // Checks shape
-      gl.uniform1f(uShapeScale, shapeScale);
-      gl.uniform1f(uDistortion, distortion);
-      gl.uniform1f(uSwirl, swirl);
-      gl.uniform1f(uSwirlIterations, swirlIterations);
+        gl.uniform1f(uScale, scale);
+        gl.uniform1f(uRotation, 0.0);
+        gl.uniform4f(uColor1, c1[0], c1[1], c1[2], c1[3]);
+        gl.uniform4f(uColor2, c2[0], c2[1], c2[2], c2[3]);
+        gl.uniform4f(uColor3, c3[0], c3[1], c3[2], c3[3]);
+        gl.uniform1f(uProportion, proportion);
+        gl.uniform1f(uSoftness, softness);
+        gl.uniform1f(uShape, 0.0);
+        gl.uniform1f(uShapeScale, shapeScale);
+        gl.uniform1f(uDistortion, distortion);
+        gl.uniform1f(uSwirl, swirl);
+        gl.uniform1f(uSwirlIterations, swirlIterations);
+        gl.uniform1f(uGrain, grainOpacity);
 
-      gl.drawArrays(gl.TRIANGLES, 0, 3);
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
+      }
       animationFrameId = requestAnimationFrame(render);
     };
 
@@ -327,26 +340,14 @@ export const FluidShaderCanvas: React.FC<FluidShaderCanvasProps> = ({
         gl.deleteVertexArray(vao);
       }
     };
-  }, [color1, color2, color3, speed, scale, swirl, swirlIterations, distortion, shapeScale, softness, proportion]);
+  }, [color1, color2, color3, speed, scale, swirl, swirlIterations, distortion, shapeScale, softness, proportion, grainOpacity]);
 
   return (
     <div className={`relative overflow-hidden pointer-events-none ${className}`}>
-      {/* 1. Underlying smooth WebGL fluid swirl */}
       <canvas 
         ref={canvasRef} 
         className="w-full h-full block" 
       />
-
-      {/* 2. Exact Capital & Code fine film grain layer - strictly static, velvety photographic paper texture */}
-      {grainOpacity > 0 && (
-        <div 
-          className="absolute inset-0 pointer-events-none select-none film-grain"
-          style={{
-            opacity: grainOpacity,
-            mixBlendMode: 'normal',
-          }}
-        />
-      )}
     </div>
   );
 };
