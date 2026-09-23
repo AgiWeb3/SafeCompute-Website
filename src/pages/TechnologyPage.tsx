@@ -11,7 +11,8 @@ import {
   Sparkles,
   ArrowUpRight,
   Lock,
-  Activity
+  Activity,
+  Radio
 } from 'lucide-react';
 import { OnionArchitecture } from '../components/OnionArchitecture';
 import { ComparisonMatrix } from '../components/ComparisonMatrix';
@@ -19,6 +20,7 @@ import { BenchmarksSection } from '../components/BenchmarksSection';
 import { DeveloperExperience } from '../components/DeveloperExperience';
 import { SectionSeparator } from '../components/SectionSeparator';
 import { LiveSecurityMonitor } from '../components/LiveSecurityMonitor';
+import { InteractiveComparisonDemo } from '../components/InteractiveComparisonDemo';
 import { useLanguage } from '../i18n';
 
 interface TechnologyPageProps {
@@ -32,11 +34,11 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({
   onOpenDemo,
   onNavigateToHome,
 }) => {
-  const [activeSection, setActiveSection] = useState<'all' | 'monitor' | 'onion' | 'matrix' | 'benchmarks' | 'sdk'>('all');
+  const [activeSection, setActiveSection] = useState<'all' | 'sim' | 'monitor' | 'onion' | 'matrix' | 'benchmarks' | 'sdk'>('all');
   const { t, language } = useLanguage();
   const tech = t.technologyPage;
 
-  const scrollToAnchor = (id: string, sectionKey: 'monitor' | 'onion' | 'matrix' | 'benchmarks' | 'sdk') => {
+  const scrollToAnchor = (id: string, sectionKey: 'sim' | 'monitor' | 'onion' | 'matrix' | 'benchmarks' | 'sdk') => {
     setActiveSection(sectionKey);
     const element = document.getElementById(id);
     if (element) {
@@ -117,6 +119,18 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({
             </button>
 
             <button
+              onClick={() => scrollToAnchor('interactive-simulation', 'sim')}
+              className={`px-3 py-1.5 rounded-xl transition-all flex items-center gap-1.5 cursor-pointer ${
+                activeSection === 'sim'
+                  ? 'bg-blue-600/25 text-blue-200 border border-blue-500/50 shadow-md font-bold'
+                  : 'bg-[#090E1A] text-slate-400 hover:text-white border border-blue-900/30'
+              }`}
+            >
+              <Radio className="w-3.5 h-3.5 text-blue-400" />
+              <span>{language.startsWith('zh') ? '双轨实证模拟' : 'Dual-Stream Simulator'}</span>
+            </button>
+
+            <button
               onClick={() => scrollToAnchor('live-security-monitor', 'monitor')}
               className={`px-3 py-1.5 rounded-xl transition-all flex items-center gap-1.5 cursor-pointer ${
                 activeSection === 'monitor'
@@ -181,6 +195,15 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({
 
       {/* Main Technical Modules */}
       <div className="space-y-16">
+        {/* Module -1: Dual-Stream Verification Simulation (Traditional Cloud vs SafeCompute) */}
+        {(activeSection === 'all' || activeSection === 'sim') && (
+          <div id="interactive-simulation" className="scroll-mt-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <InteractiveComparisonDemo />
+          </div>
+        )}
+
+        {activeSection === 'all' && <SectionSeparator />}
+
         {/* Module 0: Live Security Monitor Telemetry Widget */}
         {(activeSection === 'all' || activeSection === 'monitor') && (
           <div id="live-security-monitor" className="scroll-mt-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -188,12 +211,7 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({
           </div>
         )}
 
-        {activeSection === 'all' && (
-          <SectionSeparator 
-            label={language.startsWith('zh') ? '防御架构' : 'ARCHITECTURE'} 
-            variant="blue" 
-          />
-        )}
+        {activeSection === 'all' && <SectionSeparator />}
 
         {/* Module 1: The 3-Layer Onion Architecture & Attack Simulator */}
         {(activeSection === 'all' || activeSection === 'onion') && (
@@ -202,12 +220,7 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({
           </div>
         )}
 
-        {activeSection === 'all' && (
-          <SectionSeparator 
-            label={language.startsWith('zh') ? '技术对比' : 'COMPARISON'} 
-            variant="blue" 
-          />
-        )}
+        {activeSection === 'all' && <SectionSeparator />}
 
         {/* Module 2: 4D Comparative Product Matrix */}
         {(activeSection === 'all' || activeSection === 'matrix') && (
@@ -216,12 +229,7 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({
           </div>
         )}
 
-        {activeSection === 'all' && (
-          <SectionSeparator 
-            label={language.startsWith('zh') ? '实测基准' : 'BENCHMARKS'} 
-            variant="blue" 
-          />
-        )}
+        {activeSection === 'all' && <SectionSeparator />}
 
         {/* Module 3: Universal Scale Benchmarks & Multimodal Validation */}
         {(activeSection === 'all' || activeSection === 'benchmarks') && (
@@ -230,12 +238,7 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({
           </div>
         )}
 
-        {activeSection === 'all' && (
-          <SectionSeparator 
-            label={language.startsWith('zh') ? '开发者体验' : 'DEVELOPER'} 
-            variant="blue" 
-          />
-        )}
+        {activeSection === 'all' && <SectionSeparator />}
 
         {/* Module 4: Developer Experience, 1-Line SDK & Hardware Appliance */}
         {(activeSection === 'all' || activeSection === 'sdk') && (

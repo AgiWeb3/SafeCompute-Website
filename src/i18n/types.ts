@@ -433,6 +433,7 @@ export interface TranslationSchema {
     whitepaperBtn: string;
     talkToArchitectBtn: string;
     pills: {
+      monitor: string;
       onion: string;
       matrix: string;
       benchmarks: string;

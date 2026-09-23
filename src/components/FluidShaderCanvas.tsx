@@ -63,13 +63,19 @@ export const FluidShaderCanvas: React.FC<FluidShaderCanvasProps> = ({
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const gl = canvas.getContext('webgl2', {
-      alpha: true,
-      antialias: false,
-      depth: false,
-      preserveDrawingBuffer: false,
-      powerPreference: 'high-performance',
-    });
+    let gl: WebGL2RenderingContext | null = null;
+    try {
+      gl = canvas.getContext('webgl2', {
+        alpha: true,
+        antialias: false,
+        depth: false,
+        preserveDrawingBuffer: false,
+        powerPreference: 'high-performance',
+      });
+    } catch (e) {
+      console.warn('WebGL2 not supported or context creation failed:', e);
+      return;
+    }
 
     if (!gl) return;
 

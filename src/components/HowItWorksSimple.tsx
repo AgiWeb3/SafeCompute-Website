@@ -12,7 +12,7 @@ export const HowItWorksSimple: React.FC<HowItWorksSimpleProps> = ({ onExploreTec
   const isZh = language === 'zh-CN' || language === 'zh-TW';
 
   return (
-    <section id="how-it-works" className="py-20 bg-[#070A10] border-t border-[#1E2638] relative">
+    <section id="how-it-works" className="py-20 bg-[#070A10] relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Title */}

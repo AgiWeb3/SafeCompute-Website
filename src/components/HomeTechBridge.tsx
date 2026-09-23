@@ -35,7 +35,7 @@ export const HomeTechBridge: React.FC<HomeTechBridgeProps> = ({ onExploreTechnol
   ];
 
   return (
-    <section className="py-20 bg-[#060911] relative border-t border-b border-[#1E2638] overflow-hidden">
+    <section className="py-20 bg-[#060911] relative overflow-hidden">
       {/* Subtle background glow */}
       <div className="absolute inset-0 bg-gradient-to-b from-blue-600/5 via-transparent to-blue-600/5 pointer-events-none" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-blue-600/10 blur-[140px] pointer-events-none rounded-full" />

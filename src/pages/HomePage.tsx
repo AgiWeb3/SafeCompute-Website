@@ -3,6 +3,7 @@ import { Hero } from '../components/Hero';
 import { HowItWorksSimple } from '../components/HowItWorksSimple';
 import { ProblemAbyss } from '../components/ProblemAbyss';
 import { SolutionsSection } from '../components/SolutionsSection';
+import { EnterpriseTrustPillars } from '../components/EnterpriseTrustPillars';
 import { HomeTechBridge } from '../components/HomeTechBridge';
 import { CtaBanner } from '../components/CtaBanner';
 import { SectionSeparator } from '../components/SectionSeparator';
@@ -38,32 +39,37 @@ export const HomePage: React.FC<HomePageProps> = ({
         onExploreTechnology={onNavigateToTechnology}
       />
 
-      <SectionSeparator label={isZh ? '工作原理' : 'HOW IT WORKS'} variant="blue" />
+      <SectionSeparator />
 
       {/* 2. 3-Step Flow */}
       <HowItWorksSimple onExploreTechnology={onNavigateToTechnology} />
 
-      <SectionSeparator label={isZh ? '行业痛点' : 'THE DILEMMA'} variant="blue" />
+      <SectionSeparator />
 
       {/* 3. The 4 Enterprise Blockers */}
       <ProblemAbyss />
 
-      <SectionSeparator label={isZh ? '行业方案' : 'SOLUTIONS'} variant="blue" />
+      <SectionSeparator />
 
       {/* 4. Industry Solutions */}
       <SolutionsSection onOpenDemo={onOpenDemo} />
 
-      <SectionSeparator label={isZh ? '技术架构' : 'ARCHITECTURE'} variant="blue" />
+      <SectionSeparator />
 
-      {/* 5. Tech Bridge */}
+      {/* 5. Enterprise Trust Pillars: Zero Key Custody & Cross-Border Compliance */}
+      <EnterpriseTrustPillars />
+
+      <SectionSeparator />
+
+      {/* 6. Tech Bridge */}
       <HomeTechBridge
         onExploreTechnology={onNavigateToTechnology}
         onOpenWhitepaper={onOpenWhitepaper}
       />
 
-      <SectionSeparator variant="neutral" />
+      <SectionSeparator />
 
-      {/* 6. Closing CTA */}
+      {/* 7. Closing CTA */}
       <CtaBanner onOpenDemo={onOpenDemo} />
     </div>
   );

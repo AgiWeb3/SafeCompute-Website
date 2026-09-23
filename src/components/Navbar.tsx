@@ -117,16 +117,16 @@ export const Navbar: React.FC<NavbarProps> = ({
           <SafeComputeLogo size="md" />
         </button>
 
-        {/* Zone 2: 4 Clean, spacious high-level Nav Links (Localized) */}
-        <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
+        {/* Zone 2: Clean, spacious high-level Nav Links */}
+        <nav className="hidden lg:flex items-center gap-1 xl:gap-2 text-sm font-medium text-slate-300">
           <button 
             onClick={() => handleNavClick('home')}
-            className={`transition-all py-1.5 px-3 rounded-full cursor-pointer ${
+            className={`transition-all py-1.5 px-3 rounded-full cursor-pointer text-xs xl:text-sm ${
               currentPage === 'home' && activeSection === 'hero'
                 ? showSolidBackground 
                   ? 'text-blue-300 font-semibold bg-blue-600/15 border border-blue-500/30' 
                   : 'text-white font-semibold bg-white/10 backdrop-blur-md border border-white/15'
-                : 'text-slate-300 hover:text-white'
+                : 'text-slate-300 hover:text-white hover:bg-white/5'
             }`}
           >
             {t.nav.home}
@@ -134,12 +134,12 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           <button 
             onClick={() => handleNavClick('home', 'how-it-works')}
-            className={`transition-all py-1.5 px-3 rounded-full cursor-pointer ${
+            className={`transition-all py-1.5 px-3 rounded-full cursor-pointer text-xs xl:text-sm ${
               currentPage === 'home' && activeSection === 'how-it-works'
                 ? showSolidBackground 
                   ? 'text-blue-300 font-semibold bg-blue-600/15 border border-blue-500/30' 
                   : 'text-white font-semibold bg-white/10 backdrop-blur-md border border-white/15'
-                : 'hover:text-blue-400 text-slate-300 hover:text-white hover:bg-white/5'
+                : 'text-slate-300 hover:text-white hover:bg-white/5'
             }`}
           >
             {t.nav.howItWorks}
@@ -147,12 +147,12 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           <button 
             onClick={() => handleNavClick('home', 'solutions')}
-            className={`transition-all py-1.5 px-3 rounded-full cursor-pointer ${
+            className={`transition-all py-1.5 px-3 rounded-full cursor-pointer text-xs xl:text-sm ${
               currentPage === 'home' && activeSection === 'solutions'
                 ? showSolidBackground 
                   ? 'text-blue-300 font-semibold bg-blue-600/15 border border-blue-500/30' 
                   : 'text-white font-semibold bg-white/10 backdrop-blur-md border border-white/15'
-                : 'hover:text-blue-400 text-slate-300 hover:text-white hover:bg-white/5'
+                : 'text-slate-300 hover:text-white hover:bg-white/5'
             }`}
           >
             {t.nav.solutions}
@@ -161,7 +161,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Dedicated Technology Page Switcher with deep tech pill */}
           <button 
             onClick={() => handleNavClick('technology')}
-            className={`transition-all flex items-center gap-2 py-1.5 px-3.5 rounded-full cursor-pointer ${
+            className={`transition-all flex items-center gap-1.5 py-1.5 px-3 rounded-full cursor-pointer text-xs xl:text-sm ${
               currentPage === 'technology'
                 ? 'bg-blue-600/25 text-blue-200 font-semibold border border-blue-500/50 shadow-[0_0_15px_rgba(37,99,235,0.25)]'
                 : showSolidBackground
@@ -169,22 +169,22 @@ export const Navbar: React.FC<NavbarProps> = ({
                   : 'text-slate-300 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/10'
             }`}
           >
-            <Cpu className="w-3.5 h-3.5 text-blue-400" />
+            <Cpu className="w-3.5 h-3.5 text-blue-400 shrink-0" />
             <span>{t.nav.technology}</span>
-            <span className="px-1.5 py-0.2 text-[10px] font-mono rounded bg-blue-600/20 text-blue-300 border border-blue-500/40">
+            <span className="hidden xl:inline-block px-1.5 py-0.2 text-[10px] font-mono rounded bg-blue-600/20 text-blue-300 border border-blue-500/40">
               {t.nav.deepTechBadge}
             </span>
           </button>
         </nav>
 
         {/* Zone 3: Language Selector + Action Buttons */}
-        <div className="hidden sm:flex items-center gap-3">
+        <div className="hidden md:flex items-center gap-2 xl:gap-3">
           
           {/* Language Selector Dropdown */}
           <div className="relative" ref={dropdownRef}>
             <button
               onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-              className={`px-3 py-2 text-xs font-mono text-slate-300 hover:text-white rounded-full transition-all flex items-center gap-1.5 cursor-pointer backdrop-blur-md ${
+              className={`px-2.5 py-1.5 text-xs font-mono text-slate-300 hover:text-white rounded-full transition-all flex items-center gap-1.5 cursor-pointer backdrop-blur-md ${
                 showSolidBackground
                   ? 'bg-[#0E1526] hover:bg-[#131D33] border border-blue-900/40 hover:border-blue-700/60'
                   : 'bg-white/[0.06] hover:bg-white/[0.12] border border-white/15'
@@ -192,7 +192,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               title={t.nav.selectLanguage}
               aria-label={t.nav.selectLanguage}
             >
-              <Globe className="w-3.5 h-3.5 text-blue-400" />
+              <Globe className="w-3.5 h-3.5 text-blue-400 shrink-0" />
               <span className="font-semibold text-slate-200">{currentLanguageOption.shortLabel}</span>
             </button>
 
@@ -225,58 +225,52 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button 
             disabled
             title={language.startsWith('zh') ? '白皮书暂时仅限企业受邀客户在 NDA 下借阅' : 'Technical whitepaper restricted under NDA access'}
-            className={`px-3.5 py-2 text-xs font-semibold text-slate-400 rounded-full flex items-center gap-1.5 whitespace-nowrap cursor-not-allowed opacity-70 backdrop-blur-md ${
+            className={`hidden lg:flex px-3 py-1.5 text-xs font-semibold text-slate-400 rounded-full items-center gap-1.5 whitespace-nowrap cursor-not-allowed opacity-60 backdrop-blur-md ${
               showSolidBackground
                 ? 'bg-[#121722]/50 border border-[#1E2638]'
                 : 'bg-white/[0.04] border border-white/10'
             }`}
           >
-            <FileText className="w-3.5 h-3.5 text-slate-400" />
+            <FileText className="w-3.5 h-3.5 text-slate-400 shrink-0" />
             <span>{t.nav.techSpec}</span>
-            <span className="text-[9px] px-1.5 py-0.5 rounded bg-white/10 text-slate-300 font-mono ml-0.5">
-              {language.startsWith('zh') ? '暂不公开' : 'Restricted'}
+            <span className="text-[9px] px-1 py-0.2 rounded bg-white/10 text-slate-300 font-mono">
+              {language.startsWith('zh') ? '暂不公开' : 'NDA'}
             </span>
           </button>
           
           <button 
             onClick={onOpenDemo}
-            className="group px-5 py-2.5 text-xs font-semibold text-black bg-white hover:bg-sky-200 rounded-full shadow-[0_0_25px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(59,130,246,0.4)] transition-all flex items-center gap-2 whitespace-nowrap cursor-pointer active:scale-95"
+            className="group px-4 py-2 text-xs font-semibold text-black bg-white hover:bg-sky-200 rounded-full shadow-[0_0_25px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(59,130,246,0.4)] transition-all flex items-center gap-2 whitespace-nowrap cursor-pointer active:scale-95 shrink-0"
           >
             <span>{t.nav.bookDemo}</span>
-            <span className="w-4 h-4 rounded-full bg-black text-white flex items-center justify-center group-hover:bg-black">
+            <span className="w-4 h-4 rounded-full bg-black text-white flex items-center justify-center group-hover:bg-black shrink-0">
               <ArrowRight className="w-2.5 h-2.5" />
             </span>
           </button>
         </div>
 
-        {/* Mobile menu toggle */}
-        <div className="md:hidden flex items-center gap-2">
-          {/* Quick mobile language toggle button */}
-          <div className="flex bg-[#0E1526] border border-blue-900/40 rounded-lg p-0.5">
-            {languages.map((opt) => (
-              <button
-                key={opt.code}
-                onClick={() => setLanguage(opt.code)}
-                className={`px-1.5 py-1 text-[11px] font-mono rounded transition-colors ${
-                  language === opt.code
-                    ? 'bg-blue-600/30 text-blue-200 font-bold'
-                    : 'text-slate-400 hover:text-slate-200'
-                }`}
-              >
-                {opt.shortLabel}
-              </button>
-            ))}
+        {/* Mobile menu toggle button */}
+        <div className="lg:hidden flex items-center gap-2">
+          {/* Quick tablet language toggle */}
+          <div className="hidden sm:flex md:hidden relative" ref={dropdownRef}>
+            <button
+              onClick={() => setLangDropdownOpen(!langDropdownOpen)}
+              className="px-2 py-1 text-xs font-mono text-slate-300 bg-[#0E1526] border border-blue-900/40 rounded-lg flex items-center gap-1"
+            >
+              <Globe className="w-3.5 h-3.5 text-blue-400" />
+              <span>{currentLanguageOption.shortLabel}</span>
+            </button>
           </div>
 
           <button
             onClick={onOpenDemo}
-            className="sm:hidden px-3 py-1.5 text-xs font-semibold text-black bg-white hover:bg-sky-200 rounded-lg cursor-pointer shadow-md"
+            className="sm:hidden px-2.5 py-1.5 text-xs font-semibold text-black bg-white hover:bg-sky-200 rounded-lg cursor-pointer shadow-md shrink-0"
           >
             {t.nav.bookDemo}
           </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-slate-400 hover:text-white rounded-xl border border-blue-900/40 bg-[#0E1526] cursor-pointer"
+            className="p-2 text-slate-400 hover:text-white rounded-xl border border-blue-900/40 bg-[#0E1526] cursor-pointer shrink-0"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -284,9 +278,9 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
       </div>
 
-      {/* Mobile drawer */}
+      {/* Mobile / Tablet drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#060911]/98 border-b border-blue-900/40 px-5 pt-4 pb-6 space-y-4 backdrop-blur-2xl">
+        <div className="lg:hidden bg-[#060911]/98 border-b border-blue-900/40 px-5 pt-4 pb-6 space-y-4 backdrop-blur-2xl">
           <nav className="flex flex-col space-y-2 text-sm font-medium text-slate-200">
             <button 
               onClick={() => handleNavClick('home')}
