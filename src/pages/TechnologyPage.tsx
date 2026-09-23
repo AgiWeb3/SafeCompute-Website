@@ -270,7 +270,7 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({
               </button>
               <button
                 disabled
-                title={language.startsWith('zh') ? '白皮书暂不开放公开下载，请联系专属架构师申请' : 'Whitepaper restricted under NDA access'}
+                title={language === 'zh-TW' ? '白皮書暫不開放公開下載，請聯繫專屬架構師申請' : language === 'zh-CN' ? '白皮书暂不开放公开下载，请联系专属架构师申请' : 'Whitepaper restricted under NDA access'}
                 className="px-5 py-3 rounded-xl text-xs font-mono text-slate-500 bg-[#060911] border border-blue-950 cursor-not-allowed opacity-60 flex items-center gap-1.5"
               >
                 <Lock className="w-3.5 h-3.5 text-slate-500" />

@@ -42,11 +42,11 @@ export const WhitepaperModal: React.FC<WhitepaperModalProps> = ({ isOpen, onClos
 
           <div className="flex items-center gap-2">
             <div
-              title={language.startsWith('zh') ? '白皮书全文受知识产权与保密协议保护，暂不开放公开下载' : 'Technical whitepaper restricted under NDA access'}
+              title={language === 'zh-TW' ? '白皮書全文受知識產權與保密協定保護，暫不開放公開下載' : language === 'zh-CN' ? '白皮书全文受知识产权与保密协议保护，暂不开放公开下载' : 'Technical whitepaper restricted under NDA access'}
               className="px-3.5 py-1.5 rounded-lg bg-[#060B16] border border-blue-950 text-xs font-mono text-slate-500 flex items-center gap-1.5 cursor-not-allowed opacity-75"
             >
               <Lock className="w-3.5 h-3.5 text-slate-500" />
-              <span>{language.startsWith('zh') ? 'PDF 下载暂未开放 (NDA 受限)' : 'PDF Download Restricted (NDA)'}</span>
+              <span>{language === 'zh-TW' ? 'PDF 下載暫未開放 (NDA 受限)' : language === 'zh-CN' ? 'PDF 下载暂未开放 (NDA 受限)' : 'PDF Download Restricted (NDA)'}</span>
             </div>
             <button
               onClick={onClose}

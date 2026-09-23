@@ -21,7 +21,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<'hero' | 'how-it-works' | 'solutions'>('hero');
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const desktopDropdownRef = useRef<HTMLDivElement>(null);
+  const mobileDropdownRef = useRef<HTMLDivElement>(null);
   
   const { language, setLanguage, t, languages, currentLanguageOption } = useLanguage();
 
@@ -78,7 +79,10 @@ export const Navbar: React.FC<NavbarProps> = ({
   // Close language dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      const target = event.target as Node;
+      const insideDesktop = desktopDropdownRef.current && desktopDropdownRef.current.contains(target);
+      const insideMobile = mobileDropdownRef.current && mobileDropdownRef.current.contains(target);
+      if (!insideDesktop && !insideMobile) {
         setLangDropdownOpen(false);
       }
     };
@@ -181,7 +185,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="hidden md:flex items-center gap-2 xl:gap-3">
           
           {/* Language Selector Dropdown */}
-          <div className="relative" ref={dropdownRef}>
+          <div className="relative" ref={desktopDropdownRef}>
             <button
               onClick={() => setLangDropdownOpen(!langDropdownOpen)}
               className={`px-2.5 py-1.5 text-xs font-mono text-slate-300 hover:text-white rounded-full transition-all flex items-center gap-1.5 cursor-pointer backdrop-blur-md ${
@@ -224,7 +228,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           <button 
             disabled
-            title={language.startsWith('zh') ? '白皮书暂时仅限企业受邀客户在 NDA 下借阅' : 'Technical whitepaper restricted under NDA access'}
+            title={language === 'zh-TW' ? '白皮書暫時僅限企業受邀客戶在 NDA 下借閱' : language === 'zh-CN' ? '白皮书暂时仅限企业受邀客户在 NDA 下借阅' : 'Technical whitepaper restricted under NDA access'}
             className={`hidden lg:flex px-3 py-1.5 text-xs font-semibold text-slate-400 rounded-full items-center gap-1.5 whitespace-nowrap cursor-not-allowed opacity-60 backdrop-blur-md ${
               showSolidBackground
                 ? 'bg-[#121722]/50 border border-[#1E2638]'
@@ -234,7 +238,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <FileText className="w-3.5 h-3.5 text-slate-400 shrink-0" />
             <span>{t.nav.techSpec}</span>
             <span className="text-[9px] px-1 py-0.2 rounded bg-white/10 text-slate-300 font-mono">
-              {language.startsWith('zh') ? '暂不公开' : 'NDA'}
+              {language === 'zh-TW' ? '暫不公開' : language === 'zh-CN' ? '暂不公开' : 'NDA'}
             </span>
           </button>
           
@@ -252,14 +256,39 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Mobile menu toggle button */}
         <div className="lg:hidden flex items-center gap-2">
           {/* Quick tablet language toggle */}
-          <div className="hidden sm:flex md:hidden relative" ref={dropdownRef}>
+          <div className="hidden sm:flex md:hidden relative" ref={mobileDropdownRef}>
             <button
               onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-              className="px-2 py-1 text-xs font-mono text-slate-300 bg-[#0E1526] border border-blue-900/40 rounded-lg flex items-center gap-1"
+              className="px-2 py-1 text-xs font-mono text-slate-300 bg-[#0E1526] border border-blue-900/40 rounded-lg flex items-center gap-1 cursor-pointer"
             >
               <Globe className="w-3.5 h-3.5 text-blue-400" />
               <span>{currentLanguageOption.shortLabel}</span>
             </button>
+
+            {langDropdownOpen && (
+              <div className="absolute right-0 mt-2 w-36 rounded-2xl bg-[#090E1A] border border-blue-900/50 shadow-2xl p-1.5 z-50 backdrop-blur-xl animate-in fade-in slide-in-from-top-2 duration-150">
+                <div className="text-[10px] font-mono text-slate-400 px-2 py-1 uppercase tracking-wider">
+                  {t.nav.language}
+                </div>
+                {languages.map((opt) => (
+                  <button
+                    key={opt.code}
+                    onClick={() => handleSelectLang(opt.code)}
+                    className={`w-full flex items-center justify-between px-2.5 py-2 rounded-xl text-xs font-medium transition-colors cursor-pointer text-left ${
+                      language === opt.code
+                        ? 'bg-blue-600/25 text-blue-200 font-semibold border border-blue-500/40'
+                        : 'text-slate-300 hover:text-white hover:bg-blue-950/40'
+                    }`}
+                  >
+                    <span className="flex items-center gap-2">
+                      <span>{opt.flag}</span>
+                      <span>{opt.label}</span>
+                    </span>
+                    {language === opt.code && <Check className="w-3.5 h-3.5 text-blue-400" />}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           <button

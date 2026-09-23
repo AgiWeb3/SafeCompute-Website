@@ -9,7 +9,10 @@ interface HowItWorksSimpleProps {
 export const HowItWorksSimple: React.FC<HowItWorksSimpleProps> = ({ onExploreTechnology }) => {
   const [activeTab, setActiveTab] = useState<'safecompute' | 'traditional'>('safecompute');
   const { language } = useLanguage();
-  const isZh = language === 'zh-CN' || language === 'zh-TW';
+
+  const isZhTW = language === 'zh-TW';
+  const isZhCN = language === 'zh-CN';
+  const isZh = isZhTW || isZhCN;
 
   return (
     <section id="how-it-works" className="py-20 bg-[#070A10] relative">
@@ -18,10 +21,14 @@ export const HowItWorksSimple: React.FC<HowItWorksSimpleProps> = ({ onExploreTec
         {/* Title */}
         <div className="text-center max-w-2xl mx-auto mb-12">
           <div className="text-xs font-mono text-blue-400 uppercase tracking-widest mb-2">
-            {isZh ? '直观运作机制' : 'How It Works'}
+            {isZhTW ? '直觀運作機制' : isZhCN ? '直观运作机制' : 'How It Works'}
           </div>
           <h2 className="text-2xl sm:text-4xl font-extrabold text-white font-display">
-            {isZh ? '3 步实现：AI 获得全部机密，云端 0 字节泄漏' : '3 Steps to Sovereign AI'}
+            {isZhTW 
+              ? '3 步實現：AI 獲得全部機密，雲端 0 位元組洩漏' 
+              : isZhCN 
+                ? '3 步实现：AI 获得全部机密，云端 0 字节泄漏' 
+                : '3 Steps to Sovereign AI'}
           </h2>
         </div>
 
@@ -32,12 +39,14 @@ export const HowItWorksSimple: React.FC<HowItWorksSimpleProps> = ({ onExploreTec
           <div className="p-6 rounded-2xl bg-[#090E1A] border border-blue-900/30 hover:border-blue-500/50 hover:shadow-[0_0_30px_rgba(28,43,255,0.12)] transition-all">
             <div className="text-2xl font-black font-mono text-blue-400 mb-4">01</div>
             <h3 className="text-lg font-bold text-white mb-2">
-              {isZh ? '机密留在企业内网' : 'Secrets Stay Local'}
+              {isZhTW ? '機密留在企業內部網路' : isZhCN ? '机密留在企业内网' : 'Secrets Stay Local'}
             </h3>
             <p className="text-sm text-slate-300 leading-relaxed">
-              {isZh 
-                ? '合同底稿、量化因子与客户档案仅在企业受控设备内读取，原始文件永不上网。' 
-                : 'Raw contracts, trading alpha, and client data never leave your internal boundary.'}
+              {isZhTW 
+                ? '合約底稿、量化因子與客戶檔案僅在企業受控設備內讀取，原始文件永不上網。' 
+                : isZhCN 
+                  ? '合同底稿、量化因子与客户档案仅在企业受控设备内读取，原始文件永不上网。' 
+                  : 'Raw contracts, trading alpha, and client data never leave your internal boundary.'}
             </p>
           </div>
 
@@ -45,12 +54,14 @@ export const HowItWorksSimple: React.FC<HowItWorksSimpleProps> = ({ onExploreTec
           <div className="p-6 rounded-2xl bg-[#090E1A] border border-blue-900/30 hover:border-blue-500/50 hover:shadow-[0_0_30px_rgba(28,43,255,0.12)] transition-all">
             <div className="text-2xl font-black font-mono text-blue-400 mb-4">02</div>
             <h3 className="text-lg font-bold text-white mb-2">
-              {isZh ? '外发前瞬时数学混淆' : 'Instant Math Scrambling'}
+              {isZhTW ? '外發前瞬時數學混淆' : isZhCN ? '外发前瞬时数学混淆' : 'Instant Math Scrambling'}
             </h3>
             <p className="text-sm text-slate-300 leading-relaxed">
-              {isZh 
-                ? 'SafeCompute 网关将数据置换为不可逆数学矩阵，拦截到也只是一堆无序噪声。' 
-                : 'Data is transformed into irreversible high-entropy noise before touching the cloud.'}
+              {isZhTW 
+                ? 'SafeCompute 閘道將數據置換為不可逆數學矩陣，即使遭截獲也只是一堆無序雜訊。' 
+                : isZhCN 
+                  ? 'SafeCompute 网关将数据置换为不可逆数学矩阵，拦截到也只是一堆无序噪声。' 
+                  : 'Data is transformed into irreversible high-entropy noise before touching the cloud.'}
             </p>
           </div>
 
@@ -58,12 +69,14 @@ export const HowItWorksSimple: React.FC<HowItWorksSimpleProps> = ({ onExploreTec
           <div className="p-6 rounded-2xl bg-[#090E1A] border border-blue-900/30 hover:border-blue-500/50 hover:shadow-[0_0_30px_rgba(28,43,255,0.12)] transition-all">
             <div className="text-2xl font-black font-mono text-blue-400 mb-4">03</div>
             <h3 className="text-lg font-bold text-white mb-2">
-              {isZh ? '云端盲算，本地秒级还原' : 'Blind Cloud Compute'}
+              {isZhTW ? '雲端盲算，本地秒級還原' : isZhCN ? '云端盲算，本地秒级还原' : 'Blind Cloud Compute'}
             </h3>
             <p className="text-sm text-slate-300 leading-relaxed">
-              {isZh 
-                ? '云端大模型（任意参数尺寸或多模态）满血执行矩阵计算，唯有企业本地私钥能瞬间解密出最终结论。' 
-                : 'Cloud models (any scale & multimodal) reason over cipher matrices; only your local key can decode the final output.'}
+              {isZhTW 
+                ? '雲端大模型滿血執行矩陣運算，唯有企業本地私鑰能瞬間解密出最終結論。' 
+                : isZhCN 
+                  ? '云端大模型（任意参数尺寸或多模态）满血执行矩阵计算，唯有企业本地私钥能瞬间解密出最终结论。' 
+                  : 'Cloud models (any scale & multimodal) reason over cipher matrices; only your local key can decode the final output.'}
             </p>
           </div>
 
@@ -80,7 +93,7 @@ export const HowItWorksSimple: React.FC<HowItWorksSimpleProps> = ({ onExploreTec
                   : 'text-slate-400 hover:text-white'
               }`}
             >
-              {isZh ? 'SafeCompute 视角' : 'SafeCompute View'}
+              {isZhTW ? 'SafeCompute 視角' : isZhCN ? 'SafeCompute 视角' : 'SafeCompute View'}
             </button>
             <button
               onClick={() => setActiveTab('traditional')}
@@ -90,7 +103,7 @@ export const HowItWorksSimple: React.FC<HowItWorksSimpleProps> = ({ onExploreTec
                   : 'text-slate-400 hover:text-white'
               }`}
             >
-              {isZh ? '传统公有云视角' : 'Traditional Cloud View'}
+              {isZhTW ? '傳統公有雲視角' : isZhCN ? '传统公有云视角' : 'Traditional Cloud View'}
             </button>
           </div>
 
@@ -98,12 +111,24 @@ export const HowItWorksSimple: React.FC<HowItWorksSimpleProps> = ({ onExploreTec
             {activeTab === 'safecompute' ? (
               <span className="text-blue-400 flex items-center gap-1.5 font-medium">
                 <Lock className="w-3.5 h-3.5" />
-                <span>{isZh ? '云端显存仅见无序数学噪声 (0 字节泄漏 · 保密特权 100% 留存)' : 'Cloud VRAM sees only noise (0 bytes leaked)'}</span>
+                <span>
+                  {isZhTW 
+                    ? '雲端顯示記憶體僅見無序數學雜訊 (0 位元組外洩 · 保密特權 100% 留存)' 
+                    : isZhCN 
+                      ? '云端显存仅见无序数学噪声 (0 字节泄漏 · 保密特权 100% 留存)' 
+                      : 'Cloud VRAM sees only noise (0 bytes leaked)'}
+                </span>
               </span>
             ) : (
               <span className="text-rose-400 flex items-center gap-1.5">
                 <EyeOff className="w-3.5 h-3.5" />
-                <span>{isZh ? '云厂商与运维人员可直接读取显存中的原始明文合同与提示词' : 'Cloud operators can view raw text in GPU memory'}</span>
+                <span>
+                  {isZhTW 
+                    ? '雲端廠商與維運人員可直接讀取顯存中的原始明文合約與提示詞' 
+                    : isZhCN 
+                      ? '云厂商与运维人员可直接读取显存中的原始明文合同与提示词' 
+                      : 'Cloud operators can view raw text in GPU memory'}
+                </span>
               </span>
             )}
           </div>
@@ -113,7 +138,7 @@ export const HowItWorksSimple: React.FC<HowItWorksSimpleProps> = ({ onExploreTec
               onClick={onExploreTechnology}
               className="text-blue-400 hover:text-blue-300 text-xs font-mono font-medium flex items-center gap-1 transition-colors cursor-pointer shrink-0"
             >
-              <span>{isZh ? '技术实现' : 'Technical Details'}</span>
+              <span>{isZhTW ? '技術實現' : isZhCN ? '技术实现' : 'Technical Details'}</span>
               <ArrowRight className="w-3 h-3" />
             </button>
           )}
