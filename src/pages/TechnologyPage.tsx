@@ -10,13 +10,15 @@ import {
   Calendar,
   Sparkles,
   ArrowUpRight,
-  Lock
+  Lock,
+  Activity
 } from 'lucide-react';
 import { OnionArchitecture } from '../components/OnionArchitecture';
 import { ComparisonMatrix } from '../components/ComparisonMatrix';
 import { BenchmarksSection } from '../components/BenchmarksSection';
 import { DeveloperExperience } from '../components/DeveloperExperience';
 import { SectionSeparator } from '../components/SectionSeparator';
+import { LiveSecurityMonitor } from '../components/LiveSecurityMonitor';
 import { useLanguage } from '../i18n';
 
 interface TechnologyPageProps {
@@ -30,11 +32,11 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({
   onOpenDemo,
   onNavigateToHome,
 }) => {
-  const [activeSection, setActiveSection] = useState<'all' | 'onion' | 'matrix' | 'benchmarks' | 'sdk'>('all');
+  const [activeSection, setActiveSection] = useState<'all' | 'monitor' | 'onion' | 'matrix' | 'benchmarks' | 'sdk'>('all');
   const { t, language } = useLanguage();
   const tech = t.technologyPage;
 
-  const scrollToAnchor = (id: string, sectionKey: 'onion' | 'matrix' | 'benchmarks' | 'sdk') => {
+  const scrollToAnchor = (id: string, sectionKey: 'monitor' | 'onion' | 'matrix' | 'benchmarks' | 'sdk') => {
     setActiveSection(sectionKey);
     const element = document.getElementById(id);
     if (element) {
@@ -45,12 +47,12 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-[#070A0F] pt-24 pb-20">
+    <div className="min-h-screen bg-[#060911] pt-24 pb-20">
       {/* Top Breadcrumb & Return to Home */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
         <button
           onClick={onNavigateToHome}
-          className="inline-flex items-center gap-2 text-xs font-mono text-cyan-400 hover:text-cyan-300 transition-colors py-2 px-3 rounded-lg bg-[#0E131E] border border-[#1E2638] cursor-pointer group"
+          className="inline-flex items-center gap-2 text-xs font-mono text-blue-400 hover:text-blue-300 transition-colors py-2 px-3 rounded-lg bg-[#090E1A] border border-blue-900/40 cursor-pointer group"
         >
           <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
           <span>{tech.backToHome}</span>
@@ -60,17 +62,17 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({
       {/* Deep Tech Header Banner */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative mb-14">
         {/* Background glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[350px] bg-cyan-500/10 blur-[160px] pointer-events-none rounded-full" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[350px] bg-blue-600/15 blur-[160px] pointer-events-none rounded-full" />
 
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#121E2A] border border-cyan-500/40 text-xs font-mono text-cyan-300 mb-5 shadow-[0_0_15px_rgba(0,242,254,0.15)]">
-            <Cpu className="w-4 h-4 text-cyan-400" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-950/60 border border-blue-500/40 text-xs font-mono text-blue-300 mb-5 shadow-[0_0_20px_rgba(37,99,235,0.25)]">
+            <Cpu className="w-4 h-4 text-blue-400" />
             <span>{tech.badge}</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white font-display tracking-tight leading-[1.15] text-balance">
             {tech.title}{' '}
-            <span className="block sm:inline bg-gradient-to-r from-cyan-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent">
+            <span className="block sm:inline bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-300 bg-clip-text text-transparent">
               {tech.titleHighlight}
             </span>
           </h1>
@@ -84,7 +86,7 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({
             <button
               disabled
               title={language.startsWith('zh') ? '白皮书暂不开放公开下载，请联系专属架构师申请' : 'Whitepaper restricted under NDA access'}
-              className="px-6 py-3.5 rounded-xl text-xs font-mono text-slate-500 bg-[#121722]/50 border border-[#1E2638] flex items-center gap-2 cursor-not-allowed opacity-60 font-semibold"
+              className="px-6 py-3.5 rounded-xl text-xs font-mono text-slate-500 bg-[#090E1A]/50 border border-blue-950 flex items-center gap-2 cursor-not-allowed opacity-60 font-semibold"
             >
               <Lock className="w-4 h-4 text-slate-500" />
               <span>{tech.whitepaperBtn} ({language.startsWith('zh') ? '暂不公开' : 'Restricted'})</span>
@@ -92,7 +94,7 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({
 
             <button
               onClick={onOpenDemo}
-              className="px-6 py-3.5 rounded-xl text-xs font-bold text-[#0B0E14] bg-gradient-to-r from-cyan-400 to-[#10B981] hover:from-cyan-300 hover:to-[#34D399] shadow-[0_0_25px_rgba(0,242,254,0.3)] transition-all flex items-center gap-2 cursor-pointer active:scale-95"
+              className="px-6 py-3.5 rounded-full text-xs font-semibold text-black bg-white hover:bg-sky-200 shadow-[0_0_25px_rgba(255,255,255,0.2)] hover:shadow-[0_0_35px_rgba(59,130,246,0.5)] transition-all flex items-center gap-2 cursor-pointer active:scale-95"
             >
               <Calendar className="w-4 h-4" />
               <span>{tech.talkToArchitectBtn}</span>
@@ -101,64 +103,76 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({
         </div>
 
         {/* Quick Navigation Sticky Bar for Deep Tech Sections */}
-        <div className="sticky top-20 z-40 mt-12 py-3 bg-[#070A0F]/90 backdrop-blur-xl border-y border-[#1E2638]">
-          <div className="max-w-4xl mx-auto px-4 flex items-center justify-center gap-2 sm:gap-3 flex-wrap text-xs font-mono">
+        <div className="sticky top-20 z-40 mt-12 py-3 bg-[#060911]/90 backdrop-blur-xl border-y border-blue-900/30">
+          <div className="max-w-5xl mx-auto px-4 flex items-center justify-center gap-2 sm:gap-2.5 flex-wrap text-xs font-mono">
             <button
               onClick={() => { setActiveSection('all'); window.scrollTo({ top: 250, behavior: 'smooth' }); }}
-              className={`px-3.5 py-2 rounded-xl transition-all cursor-pointer ${
+              className={`px-3 py-1.5 rounded-xl transition-all cursor-pointer ${
                 activeSection === 'all'
-                  ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/50 shadow-md font-bold'
-                  : 'bg-[#0E131E] text-slate-400 hover:text-white border border-[#1E2638]'
+                  ? 'bg-blue-600/25 text-blue-200 border border-blue-500/50 shadow-md font-bold'
+                  : 'bg-[#090E1A] text-slate-400 hover:text-white border border-blue-900/30'
               }`}
             >
               All Tech Modules
             </button>
 
             <button
-              onClick={() => scrollToAnchor('onion-architecture', 'onion')}
-              className={`px-3.5 py-2 rounded-xl transition-all flex items-center gap-1.5 cursor-pointer ${
-                activeSection === 'onion'
-                  ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/50 shadow-md font-bold'
-                  : 'bg-[#0E131E] text-slate-400 hover:text-white border border-[#1E2638]'
+              onClick={() => scrollToAnchor('live-security-monitor', 'monitor')}
+              className={`px-3 py-1.5 rounded-xl transition-all flex items-center gap-1.5 cursor-pointer ${
+                activeSection === 'monitor'
+                  ? 'bg-blue-600/25 text-blue-200 border border-blue-500/50 shadow-md font-bold'
+                  : 'bg-[#090E1A] text-slate-400 hover:text-white border border-blue-900/30'
               }`}
             >
-              <Layers className="w-3.5 h-3.5 text-cyan-400" />
+              <Activity className="w-3.5 h-3.5 text-blue-400" />
+              <span>{tech.pills.monitor}</span>
+            </button>
+
+            <button
+              onClick={() => scrollToAnchor('onion-architecture', 'onion')}
+              className={`px-3 py-1.5 rounded-xl transition-all flex items-center gap-1.5 cursor-pointer ${
+                activeSection === 'onion'
+                  ? 'bg-blue-600/25 text-blue-200 border border-blue-500/50 shadow-md font-bold'
+                  : 'bg-[#090E1A] text-slate-400 hover:text-white border border-blue-900/30'
+              }`}
+            >
+              <Layers className="w-3.5 h-3.5 text-blue-400" />
               <span>{tech.pills.onion}</span>
             </button>
 
             <button
               onClick={() => scrollToAnchor('product-matrix', 'matrix')}
-              className={`px-3.5 py-2 rounded-xl transition-all flex items-center gap-1.5 cursor-pointer ${
+              className={`px-3 py-1.5 rounded-xl transition-all flex items-center gap-1.5 cursor-pointer ${
                 activeSection === 'matrix'
-                  ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/50 shadow-md font-bold'
-                  : 'bg-[#0E131E] text-slate-400 hover:text-white border border-[#1E2638]'
+                  ? 'bg-blue-600/25 text-blue-200 border border-blue-500/50 shadow-md font-bold'
+                  : 'bg-[#090E1A] text-slate-400 hover:text-white border border-blue-900/30'
               }`}
             >
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+              <ShieldCheck className="w-3.5 h-3.5 text-blue-400" />
               <span>{tech.pills.matrix}</span>
             </button>
 
             <button
               onClick={() => scrollToAnchor('benchmarks', 'benchmarks')}
-              className={`px-3.5 py-2 rounded-xl transition-all flex items-center gap-1.5 cursor-pointer ${
+              className={`px-3 py-1.5 rounded-xl transition-all flex items-center gap-1.5 cursor-pointer ${
                 activeSection === 'benchmarks'
-                  ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/50 shadow-md font-bold'
-                  : 'bg-[#0E131E] text-slate-400 hover:text-white border border-[#1E2638]'
+                  ? 'bg-blue-600/25 text-blue-200 border border-blue-500/50 shadow-md font-bold'
+                  : 'bg-[#090E1A] text-slate-400 hover:text-white border border-blue-900/30'
               }`}
             >
-              <BarChart3 className="w-3.5 h-3.5 text-amber-400" />
+              <BarChart3 className="w-3.5 h-3.5 text-blue-400" />
               <span>{tech.pills.benchmarks}</span>
             </button>
 
             <button
               onClick={() => scrollToAnchor('developer-experience', 'sdk')}
-              className={`px-3.5 py-2 rounded-xl transition-all flex items-center gap-1.5 cursor-pointer ${
+              className={`px-3 py-1.5 rounded-xl transition-all flex items-center gap-1.5 cursor-pointer ${
                 activeSection === 'sdk'
-                  ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/50 shadow-md font-bold'
-                  : 'bg-[#0E131E] text-slate-400 hover:text-white border border-[#1E2638]'
+                  ? 'bg-blue-600/25 text-blue-200 border border-blue-500/50 shadow-md font-bold'
+                  : 'bg-[#090E1A] text-slate-400 hover:text-white border border-blue-900/30'
               }`}
             >
-              <Code2 className="w-3.5 h-3.5 text-purple-400" />
+              <Code2 className="w-3.5 h-3.5 text-blue-400" />
               <span>{tech.pills.sdk}</span>
             </button>
           </div>
@@ -167,6 +181,20 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({
 
       {/* Main Technical Modules */}
       <div className="space-y-16">
+        {/* Module 0: Live Security Monitor Telemetry Widget */}
+        {(activeSection === 'all' || activeSection === 'monitor') && (
+          <div id="live-security-monitor" className="scroll-mt-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <LiveSecurityMonitor />
+          </div>
+        )}
+
+        {activeSection === 'all' && (
+          <SectionSeparator 
+            label={language.startsWith('zh') ? '防御架构' : 'ARCHITECTURE'} 
+            variant="blue" 
+          />
+        )}
+
         {/* Module 1: The 3-Layer Onion Architecture & Attack Simulator */}
         {(activeSection === 'all' || activeSection === 'onion') && (
           <div id="onion-architecture" className="scroll-mt-32">
@@ -177,7 +205,7 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({
         {activeSection === 'all' && (
           <SectionSeparator 
             label={language.startsWith('zh') ? '技术对比' : 'COMPARISON'} 
-            variant="cyan" 
+            variant="blue" 
           />
         )}
 
@@ -191,11 +219,11 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({
         {activeSection === 'all' && (
           <SectionSeparator 
             label={language.startsWith('zh') ? '实测基准' : 'BENCHMARKS'} 
-            variant="emerald" 
+            variant="blue" 
           />
         )}
 
-        {/* Module 3: Empirical Benchmarks & Validation */}
+        {/* Module 3: Universal Scale Benchmarks & Multimodal Validation */}
         {(activeSection === 'all' || activeSection === 'benchmarks') && (
           <div id="benchmarks" className="scroll-mt-32">
             <BenchmarksSection />
@@ -205,7 +233,7 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({
         {activeSection === 'all' && (
           <SectionSeparator 
             label={language.startsWith('zh') ? '开发者体验' : 'DEVELOPER'} 
-            variant="cyan" 
+            variant="blue" 
           />
         )}
 
@@ -219,9 +247,9 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({
 
       {/* Bottom Architectural Consultation Banner */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-24">
-        <div className="rounded-3xl bg-gradient-to-r from-[#0E1522] via-[#121B2B] to-[#0A121E] border border-cyan-500/30 p-8 sm:p-12 text-center relative overflow-hidden shadow-2xl">
+        <div className="rounded-3xl bg-gradient-to-r from-[#060B16] via-[#091122] to-[#060B16] border border-blue-900/40 p-8 sm:p-12 text-center relative overflow-hidden shadow-2xl">
           <div className="relative z-10 max-w-3xl mx-auto space-y-4">
-            <span className="text-xs font-mono uppercase tracking-widest text-cyan-400">
+            <span className="text-xs font-mono uppercase tracking-widest text-blue-400">
               Architectural Briefing &amp; SDK Access
             </span>
             <h3 className="text-2xl sm:text-4xl font-extrabold text-white font-display">
@@ -233,14 +261,14 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({
             <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
               <button
                 onClick={onOpenDemo}
-                className="px-6 py-3 rounded-xl text-xs font-bold text-[#0B0E14] bg-cyan-400 hover:bg-cyan-300 transition-colors shadow-lg cursor-pointer"
+                className="px-6 py-3 rounded-full text-xs font-semibold text-black bg-white hover:bg-sky-200 transition-colors shadow-lg cursor-pointer active:scale-95"
               >
                 Schedule Technical Deep Dive
               </button>
               <button
                 disabled
                 title={language.startsWith('zh') ? '白皮书暂不开放公开下载，请联系专属架构师申请' : 'Whitepaper restricted under NDA access'}
-                className="px-5 py-3 rounded-xl text-xs font-mono text-slate-500 bg-[#0B0E14] border border-[#1E2638] cursor-not-allowed opacity-60 flex items-center gap-1.5"
+                className="px-5 py-3 rounded-xl text-xs font-mono text-slate-500 bg-[#060911] border border-blue-950 cursor-not-allowed opacity-60 flex items-center gap-1.5"
               >
                 <Lock className="w-3.5 h-3.5 text-slate-500" />
                 <span>{language.startsWith('zh') ? '白皮书 (暂不公开)' : 'Whitepaper (Restricted)'}</span>

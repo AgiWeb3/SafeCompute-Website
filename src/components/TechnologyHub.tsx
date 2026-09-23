@@ -17,23 +17,23 @@ export const TechnologyHub: React.FC<TechnologyHubProps> = ({ onOpenWhitepaper }
   const tech = t.technologyHub;
 
   return (
-    <section id="technology" className="py-24 bg-[#070A0F] relative border-t-2 border-cyan-500/30 overflow-hidden">
+    <section id="technology" className="py-24 bg-[#060911] relative border-t-2 border-blue-600/30 overflow-hidden">
       {/* Background ambient lighting for deep tech section */}
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-cyan-400/80 to-transparent" />
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-cyan-500/5 blur-[180px] pointer-events-none rounded-full" />
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-blue-500/80 to-transparent" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-blue-600/10 blur-[180px] pointer-events-none rounded-full" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Technology Header Banner */}
         <div className="max-w-4xl mx-auto text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#121E2A] border border-cyan-500/40 text-xs font-mono text-cyan-300 mb-4">
-            <Cpu className="w-3.5 h-3.5 text-cyan-400" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-950/50 border border-blue-800/50 text-xs font-mono text-blue-300 mb-4">
+            <Cpu className="w-3.5 h-3.5 text-blue-400" />
             <span>{tech.badge}</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white font-display tracking-tight text-balance">
             {tech.titleLine1} <br />
-            <span className="bg-gradient-to-r from-cyan-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-white via-sky-200 to-blue-400 bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(59,130,246,0.35)]">
               {tech.titleLine2}
             </span>
           </h2>
@@ -45,9 +45,9 @@ export const TechnologyHub: React.FC<TechnologyHubProps> = ({ onOpenWhitepaper }
           <div className="mt-6 flex items-center justify-center gap-3">
             <button
               onClick={onOpenWhitepaper}
-              className="px-4 py-2 text-xs font-mono text-cyan-300 bg-[#121722] hover:bg-[#1A2234] border border-cyan-500/40 hover:border-cyan-400 rounded-xl transition-all flex items-center gap-2 cursor-pointer shadow-sm"
+              className="px-4 py-2 text-xs font-mono text-blue-300 bg-[#090E1A] hover:bg-[#0E1526] border border-blue-500/40 hover:border-blue-400 rounded-xl transition-all flex items-center gap-2 cursor-pointer shadow-sm"
             >
-              <FileText className="w-4 h-4 text-cyan-400" />
+              <FileText className="w-4 h-4 text-blue-400" />
               <span>{tech.readSpecBtn}</span>
             </button>
           </div>
@@ -59,8 +59,8 @@ export const TechnologyHub: React.FC<TechnologyHubProps> = ({ onOpenWhitepaper }
             onClick={() => setActiveTab('all')}
             className={`px-4 py-2 rounded-xl text-xs font-mono transition-all cursor-pointer ${
               activeTab === 'all'
-                ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/50 shadow-md font-bold'
-                : 'bg-[#0E131E] text-slate-400 hover:text-white border border-[#1E2638]'
+                ? 'bg-blue-600/25 text-blue-300 border border-blue-500/50 shadow-[0_0_15px_rgba(37,99,235,0.25)] font-bold'
+                : 'bg-[#090E1A] text-slate-400 hover:text-white border border-blue-900/40'
             }`}
           >
             {tech.tabs.all}
@@ -70,8 +70,8 @@ export const TechnologyHub: React.FC<TechnologyHubProps> = ({ onOpenWhitepaper }
             onClick={() => setActiveTab('onion')}
             className={`px-4 py-2 rounded-xl text-xs font-mono transition-all cursor-pointer flex items-center gap-1.5 ${
               activeTab === 'onion'
-                ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/50 shadow-md font-bold'
-                : 'bg-[#0E131E] text-slate-400 hover:text-white border border-[#1E2638]'
+                ? 'bg-blue-600/25 text-blue-300 border border-blue-500/50 shadow-[0_0_15px_rgba(37,99,235,0.25)] font-bold'
+                : 'bg-[#090E1A] text-slate-400 hover:text-white border border-blue-900/40'
             }`}
           >
             <Layers className="w-3.5 h-3.5" />
@@ -82,8 +82,8 @@ export const TechnologyHub: React.FC<TechnologyHubProps> = ({ onOpenWhitepaper }
             onClick={() => setActiveTab('matrix')}
             className={`px-4 py-2 rounded-xl text-xs font-mono transition-all cursor-pointer flex items-center gap-1.5 ${
               activeTab === 'matrix'
-                ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/50 shadow-md font-bold'
-                : 'bg-[#0E131E] text-slate-400 hover:text-white border border-[#1E2638]'
+                ? 'bg-blue-600/25 text-blue-300 border border-blue-500/50 shadow-[0_0_15px_rgba(37,99,235,0.25)] font-bold'
+                : 'bg-[#090E1A] text-slate-400 hover:text-white border border-blue-900/40'
             }`}
           >
             <Shield className="w-3.5 h-3.5" />
@@ -94,8 +94,8 @@ export const TechnologyHub: React.FC<TechnologyHubProps> = ({ onOpenWhitepaper }
             onClick={() => setActiveTab('benchmarks')}
             className={`px-4 py-2 rounded-xl text-xs font-mono transition-all cursor-pointer flex items-center gap-1.5 ${
               activeTab === 'benchmarks'
-                ? 'bg-amber-500/20 text-amber-300 border border-amber-500/50 shadow-md font-bold'
-                : 'bg-[#0E131E] text-slate-400 hover:text-white border border-[#1E2638]'
+                ? 'bg-blue-600/25 text-blue-300 border border-blue-500/50 shadow-[0_0_15px_rgba(37,99,235,0.25)] font-bold'
+                : 'bg-[#090E1A] text-slate-400 hover:text-white border border-blue-900/40'
             }`}
           >
             <Activity className="w-3.5 h-3.5" />
@@ -106,8 +106,8 @@ export const TechnologyHub: React.FC<TechnologyHubProps> = ({ onOpenWhitepaper }
             onClick={() => setActiveTab('sdk')}
             className={`px-4 py-2 rounded-xl text-xs font-mono transition-all cursor-pointer flex items-center gap-1.5 ${
               activeTab === 'sdk'
-                ? 'bg-teal-500/20 text-teal-300 border border-teal-500/50 shadow-md font-bold'
-                : 'bg-[#0E131E] text-slate-400 hover:text-white border border-[#1E2638]'
+                ? 'bg-blue-600/25 text-blue-300 border border-blue-500/50 shadow-[0_0_15px_rgba(37,99,235,0.25)] font-bold'
+                : 'bg-[#090E1A] text-slate-400 hover:text-white border border-blue-900/40'
             }`}
           >
             <Code2 className="w-3.5 h-3.5" />

@@ -58,8 +58,8 @@ export const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ isOpen, onCl
 
         {!submitted ? (
           <div>
-            <div className="flex items-center gap-2 text-xs font-mono text-cyan-400 uppercase tracking-wider mb-2">
-              <Shield className="w-4 h-4 text-cyan-400" />
+            <div className="flex items-center gap-2 text-xs font-mono text-blue-400 uppercase tracking-wider mb-2">
+              <Shield className="w-4 h-4 text-blue-400" />
               <span>SafeCompute Enterprise · HK & SG</span>
             </div>
             
@@ -83,7 +83,7 @@ export const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ isOpen, onCl
                     placeholder={m.namePlaceholder}
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#0B0E14] border border-[#1E2638] text-sm text-white focus:outline-none focus:border-cyan-400 placeholder:text-slate-600"
+                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#080C16] border border-blue-900/40 text-sm text-white focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 placeholder:text-slate-600"
                   />
                 </div>
               </div>
@@ -100,7 +100,7 @@ export const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ isOpen, onCl
                     placeholder={m.emailPlaceholder}
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#0B0E14] border border-[#1E2638] text-sm text-white focus:outline-none focus:border-cyan-400 placeholder:text-slate-600"
+                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#080C16] border border-blue-900/40 text-sm text-white focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 placeholder:text-slate-600"
                   />
                 </div>
               </div>
@@ -116,7 +116,7 @@ export const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ isOpen, onCl
                     placeholder={m.companyPlaceholder}
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#0B0E14] border border-[#1E2638] text-sm text-white focus:outline-none focus:border-cyan-400 placeholder:text-slate-600"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#080C16] border border-blue-900/40 text-sm text-white focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 placeholder:text-slate-600"
                   />
                 </div>
 
@@ -127,7 +127,7 @@ export const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ isOpen, onCl
                   <select
                     value={formData.deploymentType}
                     onChange={(e) => setFormData({ ...formData, deploymentType: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#0B0E14] border border-[#1E2638] text-sm text-white focus:outline-none focus:border-cyan-400"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-[#080C16] border border-blue-900/40 text-sm text-white focus:outline-none focus:border-blue-400"
                   >
                     <option value="saas">{m.deploymentSaas}</option>
                     <option value="appliance">{m.deploymentAppliance}</option>
@@ -142,7 +142,7 @@ export const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ isOpen, onCl
                 <select
                   value={formData.agentUse}
                   onChange={(e) => setFormData({ ...formData, agentUse: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#0B0E14] border border-[#1E2638] text-sm text-white focus:outline-none focus:border-cyan-400"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#080C16] border border-blue-900/40 text-sm text-white focus:outline-none focus:border-blue-400"
                 >
                   <option value="legal_finance">{m.useCaseLegalFinance}</option>
                   <option value="healthcare">{m.useCaseHealthcare}</option>
@@ -152,7 +152,7 @@ export const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ isOpen, onCl
 
               <button
                 type="submit"
-                className="w-full py-3.5 mt-2 text-sm font-bold text-[#0B0E14] bg-gradient-to-r from-cyan-400 to-[#10B981] hover:from-cyan-300 hover:to-[#34D399] rounded-xl shadow-[0_0_20px_rgba(0,242,254,0.3)] transition-all cursor-pointer flex items-center justify-center gap-2"
+                className="w-full py-3.5 mt-2 text-sm font-semibold text-black bg-white hover:bg-sky-200 rounded-full shadow-[0_0_25px_rgba(255,255,255,0.25)] hover:shadow-[0_0_35px_rgba(59,130,246,0.5)] transition-all cursor-pointer flex items-center justify-center gap-2 active:scale-95"
               >
                 <span>{m.submitBtn}</span>
                 <ArrowRight className="w-4 h-4" />
@@ -161,8 +161,8 @@ export const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ isOpen, onCl
           </div>
         ) : (
           <div className="py-8 text-center space-y-4">
-            <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center mx-auto">
-              <CheckCircle2 className="w-8 h-8" />
+            <div className="w-16 h-16 rounded-full bg-blue-600/20 text-blue-400 border border-blue-500/40 flex items-center justify-center mx-auto shadow-[0_0_20px_rgba(37,99,235,0.3)]">
+              <CheckCircle2 className="w-8 h-8 text-blue-400" />
             </div>
             
             <h3 className="text-2xl font-bold text-white">
@@ -176,7 +176,7 @@ export const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ isOpen, onCl
             <div className="pt-4">
               <button
                 onClick={handleReset}
-                className="px-6 py-2.5 text-xs font-semibold text-slate-300 bg-[#0B0E14] border border-[#1E2638] rounded-xl hover:text-white cursor-pointer"
+                className="px-6 py-2.5 text-xs font-semibold text-slate-300 bg-[#080C16] border border-blue-900/50 rounded-xl hover:text-white cursor-pointer"
               >
                 {m.doneBtn}
               </button>

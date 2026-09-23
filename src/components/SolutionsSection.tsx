@@ -48,9 +48,9 @@ export const SolutionsSection: React.FC<SolutionsSectionProps> = ({ onOpenDemo }
     legal: {
       label: isZh ? '顶尖律所与法务部' : 'Law Firms & General Counsel',
       icon: <Scale className="w-4 h-4" />,
-      color: 'text-emerald-400',
-      accentBg: 'bg-emerald-500/10',
-      borderAccent: 'border-emerald-500/40',
+      color: 'text-blue-400',
+      accentBg: 'bg-blue-600/10',
+      borderAccent: 'border-blue-500/40',
       badge: isZh ? '律师执业特免权 100% 留存' : 'Attorney-Client Privilege Preserved',
       tagline: isZh 
         ? '在绝不放弃保密特免权 (Privilege) 的司法底线下，释放自主 Agent 审查数万页并购与诉讼卷宗' 
@@ -90,13 +90,13 @@ export const SolutionsSection: React.FC<SolutionsSectionProps> = ({ onOpenDemo }
     finance: {
       label: isZh ? '对冲基金与一级金融' : 'Hedge Funds & Tier-1 Banks',
       icon: <Landmark className="w-4 h-4" />,
-      color: 'text-cyan-400',
-      accentBg: 'bg-cyan-500/10',
-      borderAccent: 'border-cyan-500/40',
+      color: 'text-blue-400',
+      accentBg: 'bg-blue-600/10',
+      borderAccent: 'border-blue-500/40',
       badge: isZh ? '独家 Alpha 零泄漏 · 毫秒级硬风控' : 'Zero Alpha Leakage · Sub-2ms Action Control',
       tagline: isZh 
-        ? '在绝不暴露核心投资策略与高净值持仓底牌的前提下，调度公有云超大规模模型执行全球研报深度挖掘' 
-        : 'Leverage frontier hyperscale cloud intelligence for real-time market sentiment without leaking proprietary alpha factors or portfolio holdings.',
+        ? '在绝不暴露核心投资策略与高净值持仓底牌的前提下，调度公有云超大规模与多模态模型执行全球研报深度挖掘' 
+        : 'Leverage frontier multimodal and hyperscale cloud intelligence for real-time market sentiment without leaking proprietary alpha factors or portfolio holdings.',
       decisionMaker: isZh ? '决策人：首席投资官 (CIO)、首席风险官 (CRO)、量化总监' : 'For: Chief Investment Officers, Quant Trading Leads & Head of Risk',
       challengeTitle: isZh ? '当前致命阻碍：模型逆向与自主 Agent 越权交易' : 'The Core Dilemma: Proprietary Factor Theft & Rogue API Execution',
       challengeDesc: isZh 
@@ -132,9 +132,9 @@ export const SolutionsSection: React.FC<SolutionsSectionProps> = ({ onOpenDemo }
     healthcare: {
       label: isZh ? '医疗集团与生物科技' : 'Healthcare Systems & BioTech',
       icon: <HeartPulse className="w-4 h-4" />,
-      color: 'text-teal-400',
-      accentBg: 'bg-teal-500/10',
-      borderAccent: 'border-teal-500/40',
+      color: 'text-blue-400',
+      accentBg: 'bg-blue-600/10',
+      borderAccent: 'border-blue-500/40',
       badge: isZh ? '符合 HIPAA / PHI 零明文外泄' : '100% HIPAA & PHI Compliant',
       tagline: isZh 
         ? '盲态挖掘数百万电子病历 (EHR) 与数十亿美元在研药物靶点，彻底消除隐私侵权与知识产权流失风险' 
@@ -174,9 +174,9 @@ export const SolutionsSection: React.FC<SolutionsSectionProps> = ({ onOpenDemo }
     government: {
       label: isZh ? '政府国防与关键基建' : 'Government & Public Sector',
       icon: <Building2 className="w-4 h-4" />,
-      color: 'text-amber-400',
-      accentBg: 'bg-amber-500/10',
-      borderAccent: 'border-amber-500/40',
+      color: 'text-blue-400',
+      accentBg: 'bg-blue-600/10',
+      borderAccent: 'border-blue-500/40',
       badge: isZh ? '国家级数据主权 · 物理机房不可信假设' : 'National Data Sovereignty · Zero Cloud Trust',
       tagline: isZh 
         ? '在算力节点位于不可信公有云或第三方集群的极端对抗假设下，依然保障国家涉密政务与国防研报的绝对主权' 
@@ -184,8 +184,8 @@ export const SolutionsSection: React.FC<SolutionsSectionProps> = ({ onOpenDemo }
       decisionMaker: isZh ? '决策人：政企信息主管、国家保密技术部门、智慧城市总工' : 'For: Agency CIOs, National Cyber Security Directors & Defense IT Leadership',
       challengeTitle: isZh ? '当前致命阻碍：云厂商“内部人威胁”与境外法权长臂管辖' : 'The Core Dilemma: Cloud Insider Threats & Jurisdictional Coercion',
       challengeDesc: isZh 
-        ? '涉密政务、城市关键基础设施调度与国防防务文档，绝不能受制于云厂商管理员的物理审查或外方法律的传票调取；而纯离线自建算力成本高昂，且算力集群代际落后数年，无法享用全球最先进的顶尖云端大模型基座。' 
-        : 'National security briefs and critical infrastructure controls cannot be subjected to foreign subpoena or hypervisor root administrators. Yet air-gapped clusters lag years behind frontier cloud models.',
+        ? '涉密政务、城市关键基础设施调度与国防防务文档，绝不能受制于云厂商管理员的物理审查或外方法律的传票调取；而纯离线自建算力成本高昂，且算力集群代际落后数年，无法享用全球最先进的顶尖多模态与大规模基座模型。' 
+        : 'National security briefs and critical infrastructure controls cannot be subjected to foreign subpoena or hypervisor root administrators. Yet air-gapped clusters lag years behind frontier multimodal cloud models.',
       riskPoints: [
         isZh ? '云厂商超级管理员权限滥用：Root 账号可无感知嗅探容器内存与挂载盘' : 'Cloud hypervisor superusers can silently inspect virtual machine memory dumps',
         isZh ? '数据跨境与长臂管辖冲突：跨国云服务商可能被迫依照境外法令移交托管数据' : 'Foreign legal discovery demands can legally compel cloud vendors to turn over keys',
@@ -219,14 +219,14 @@ export const SolutionsSection: React.FC<SolutionsSectionProps> = ({ onOpenDemo }
   return (
     <section id="solutions" className="py-24 bg-[#080B12] border-t border-[#1E2638] relative overflow-hidden">
       {/* Background illumination */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-cyan-500/5 blur-[160px] pointer-events-none rounded-full" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-blue-600/5 blur-[160px] pointer-events-none rounded-full" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#121722] border border-[#1E2638] text-xs font-mono text-cyan-400 mb-3">
-            <Sparkles className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0A0E18] border border-blue-900/40 text-xs font-mono text-blue-400 mb-3">
+            <Sparkles className="w-3.5 h-3.5 text-blue-400" />
             <span>{isZh ? '高安全行业的生产力破局' : 'ENTERPRISE INDUSTRY SOLUTIONS'}</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white font-display tracking-tight text-balance">
@@ -250,16 +250,16 @@ export const SolutionsSection: React.FC<SolutionsSectionProps> = ({ onOpenDemo }
                 onClick={() => setSelectedIndustry(key)}
                 className={`p-4 rounded-2xl text-left transition-all cursor-pointer border flex flex-col justify-between ${
                   isActive
-                    ? 'bg-[#131C2E] border-cyan-400 shadow-[0_0_25px_rgba(0,242,254,0.15)] ring-1 ring-cyan-400/40'
-                    : 'bg-[#0E131E] border-[#1E2638] hover:border-slate-600 hover:bg-[#121724]'
+                    ? 'bg-[#0E1526] border-blue-500 shadow-[0_0_25px_rgba(28,43,255,0.18)] ring-1 ring-blue-500/50'
+                    : 'bg-[#0A0E18] border-[#1E2638] hover:border-blue-900 hover:bg-[#0D1220]'
                 }`}
               >
                 <div className="flex items-center justify-between mb-3">
-                  <div className={`p-2 rounded-xl ${isActive ? 'bg-cyan-500/20 text-cyan-300' : 'bg-slate-800/80 text-slate-400'}`}>
+                  <div className={`p-2 rounded-xl ${isActive ? 'bg-blue-600/20 text-blue-300' : 'bg-slate-800/80 text-slate-400'}`}>
                     {ind.icon}
                   </div>
                   {isActive && (
-                    <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+                    <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse shadow-[0_0_6px_#3B82F6]" />
                   )}
                 </div>
                 <div>
@@ -344,10 +344,10 @@ export const SolutionsSection: React.FC<SolutionsSectionProps> = ({ onOpenDemo }
             </div>
 
             {/* Right Column: How SafeCompute Solves It (The Architecture) */}
-            <div className="lg:col-span-6 rounded-2xl bg-[#0C1520] border border-emerald-500/30 p-6 sm:p-8 flex flex-col justify-between">
+            <div className="lg:col-span-6 rounded-2xl bg-[#091020] border border-blue-500/40 p-6 sm:p-8 flex flex-col justify-between shadow-[0_0_30px_rgba(28,43,255,0.08)]">
               <div>
-                <div className="flex items-center gap-2 text-emerald-400 text-xs font-mono uppercase tracking-wider mb-3">
-                  <ShieldCheck className="w-4 h-4" />
+                <div className="flex items-center gap-2 text-blue-400 text-xs font-mono uppercase tracking-wider mb-3">
+                  <ShieldCheck className="w-4 h-4 text-blue-400" />
                   <span>{isZh ? 'SafeCompute 破局工程实现' : 'The SafeCompute Architectural Unlock'}</span>
                 </div>
                 <h4 className="text-lg font-bold text-white mb-3">
@@ -357,11 +357,11 @@ export const SolutionsSection: React.FC<SolutionsSectionProps> = ({ onOpenDemo }
                   {current.solutionDesc}
                 </p>
 
-                <div className="grid grid-cols-1 gap-4 pt-2 border-t border-emerald-500/20">
+                <div className="grid grid-cols-1 gap-4 pt-2 border-t border-blue-500/20">
                   {current.architecturePillars.map((pillar, i) => (
-                    <div key={i} className="p-3.5 rounded-xl bg-[#081018] border border-emerald-500/20">
-                      <div className="text-xs font-bold text-emerald-300 flex items-center gap-1.5 mb-1">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                    <div key={i} className="p-3.5 rounded-xl bg-[#060B18] border border-blue-900/40">
+                      <div className="text-xs font-bold text-blue-300 flex items-center gap-1.5 mb-1">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-blue-400" />
                         <span>{pillar.title}</span>
                       </div>
                       <div className="text-xs text-slate-400 leading-relaxed pl-5">
@@ -372,7 +372,7 @@ export const SolutionsSection: React.FC<SolutionsSectionProps> = ({ onOpenDemo }
                 </div>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-emerald-500/20 text-[11px] font-mono text-emerald-300 flex items-center gap-1.5">
+              <div className="mt-6 pt-4 border-t border-blue-500/20 text-[11px] font-mono text-blue-300 flex items-center gap-1.5">
                 <Layers className="w-3.5 h-3.5" />
                 <span>{isZh ? '无需更换现有业务工作流，作为安全网关无感接入' : 'Zero rip-and-replace: Deployed as inline sovereign proxy'}</span>
               </div>
@@ -381,10 +381,10 @@ export const SolutionsSection: React.FC<SolutionsSectionProps> = ({ onOpenDemo }
           </div>
 
           {/* Bottom ROI & Quantifiable Metric Bar */}
-          <div className="p-6 rounded-2xl bg-[#090D15] border border-[#1E2638] grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="p-6 rounded-2xl bg-[#080C16] border border-blue-900/40 grid grid-cols-1 sm:grid-cols-3 gap-6">
             {current.quantifiableRoi.map((roi, idx) => (
               <div key={idx} className="flex flex-col items-center sm:items-start text-center sm:text-left">
-                <span className="text-2xl sm:text-3xl font-black font-mono text-white bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent">
+                <span className="text-2xl sm:text-3xl font-black font-mono text-white bg-gradient-to-r from-white via-sky-200 to-blue-400 bg-clip-text text-transparent">
                   {roi.metric}
                 </span>
                 <span className="text-xs text-slate-400 font-medium mt-1">

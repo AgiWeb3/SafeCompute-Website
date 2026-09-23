@@ -2,17 +2,18 @@ import React from 'react';
 
 interface SectionSeparatorProps {
   label?: string;
-  variant?: 'cyan' | 'emerald' | 'amber' | 'neutral';
+  variant?: 'blue' | 'cyan' | 'emerald' | 'amber' | 'neutral';
 }
 
 export const SectionSeparator: React.FC<SectionSeparatorProps> = ({ 
   label, 
-  variant = 'cyan' 
+  variant = 'blue' 
 }) => {
   const glowStyles = {
-    cyan: 'from-cyan-500/0 via-cyan-500/25 to-cyan-500/0',
-    emerald: 'from-emerald-500/0 via-emerald-500/25 to-emerald-500/0',
-    amber: 'from-amber-500/0 via-amber-500/25 to-amber-500/0',
+    blue: 'from-blue-600/0 via-blue-500/25 to-blue-600/0',
+    cyan: 'from-blue-500/0 via-blue-400/25 to-blue-500/0',
+    emerald: 'from-blue-600/0 via-blue-500/20 to-blue-600/0',
+    amber: 'from-blue-600/0 via-blue-500/20 to-blue-600/0',
     neutral: 'from-[#1E2638]/0 via-[#1E2638] to-[#1E2638]/0',
   }[variant];
 
@@ -24,7 +25,7 @@ export const SectionSeparator: React.FC<SectionSeparatorProps> = ({
 
       {/* Ultra-clean micro label if provided */}
       {label && (
-        <span className="relative z-10 px-3 py-0.5 rounded-full bg-[#080B12] border border-[#1E2638] text-[10px] font-mono tracking-widest uppercase text-slate-500">
+        <span className="relative z-10 px-3 py-0.5 rounded-full bg-[#060911] border border-blue-900/40 text-[10px] font-mono tracking-widest uppercase text-blue-400/70">
           {label}
         </span>
       )}

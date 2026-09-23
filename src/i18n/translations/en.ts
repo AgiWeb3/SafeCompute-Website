@@ -578,6 +578,7 @@ export const en: TranslationSchema = {
     whitepaperBtn: 'Download Technical Whitepaper',
     talkToArchitectBtn: 'Schedule Technical Architecture Review',
     pills: {
+      monitor: 'Live Security Monitor',
       onion: '3-Layer Onion Architecture',
       matrix: '4D Product Matrix',
       benchmarks: 'Universal Scale Benchmarks',

@@ -17,7 +17,7 @@ export const HowItWorksSimple: React.FC<HowItWorksSimpleProps> = ({ onExploreTec
         
         {/* Title */}
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <div className="text-xs font-mono text-cyan-400 uppercase tracking-widest mb-2">
+          <div className="text-xs font-mono text-blue-400 uppercase tracking-widest mb-2">
             {isZh ? '直观运作机制' : 'How It Works'}
           </div>
           <h2 className="text-2xl sm:text-4xl font-extrabold text-white font-display">
@@ -29,8 +29,8 @@ export const HowItWorksSimple: React.FC<HowItWorksSimpleProps> = ({ onExploreTec
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           
           {/* Step 1 */}
-          <div className="p-6 rounded-2xl bg-[#0C111C] border border-[#1E2638] hover:border-emerald-500/40 transition-all">
-            <div className="text-2xl font-black font-mono text-emerald-400 mb-4">01</div>
+          <div className="p-6 rounded-2xl bg-[#090E1A] border border-blue-900/30 hover:border-blue-500/50 hover:shadow-[0_0_30px_rgba(28,43,255,0.12)] transition-all">
+            <div className="text-2xl font-black font-mono text-blue-400 mb-4">01</div>
             <h3 className="text-lg font-bold text-white mb-2">
               {isZh ? '机密留在企业内网' : 'Secrets Stay Local'}
             </h3>
@@ -42,8 +42,8 @@ export const HowItWorksSimple: React.FC<HowItWorksSimpleProps> = ({ onExploreTec
           </div>
 
           {/* Step 2 */}
-          <div className="p-6 rounded-2xl bg-[#0C111C] border border-[#1E2638] hover:border-cyan-500/40 transition-all">
-            <div className="text-2xl font-black font-mono text-cyan-400 mb-4">02</div>
+          <div className="p-6 rounded-2xl bg-[#090E1A] border border-blue-900/30 hover:border-blue-500/50 hover:shadow-[0_0_30px_rgba(28,43,255,0.12)] transition-all">
+            <div className="text-2xl font-black font-mono text-blue-400 mb-4">02</div>
             <h3 className="text-lg font-bold text-white mb-2">
               {isZh ? '外发前瞬时数学混淆' : 'Instant Math Scrambling'}
             </h3>
@@ -55,28 +55,28 @@ export const HowItWorksSimple: React.FC<HowItWorksSimpleProps> = ({ onExploreTec
           </div>
 
           {/* Step 3 */}
-          <div className="p-6 rounded-2xl bg-[#0C111C] border border-[#1E2638] hover:border-emerald-500/40 transition-all">
-            <div className="text-2xl font-black font-mono text-emerald-400 mb-4">03</div>
+          <div className="p-6 rounded-2xl bg-[#090E1A] border border-blue-900/30 hover:border-blue-500/50 hover:shadow-[0_0_30px_rgba(28,43,255,0.12)] transition-all">
+            <div className="text-2xl font-black font-mono text-blue-400 mb-4">03</div>
             <h3 className="text-lg font-bold text-white mb-2">
               {isZh ? '云端盲算，本地秒级还原' : 'Blind Cloud Compute'}
             </h3>
             <p className="text-sm text-slate-300 leading-relaxed">
               {isZh 
-                ? '云端前沿大模型在密文张量上执行前向推理，唯有企业本地私钥能瞬间解密出最终结论。' 
-                : 'Cloud models reason directly over cipher matrices; only your local key can decode the final output.'}
+                ? '云端大模型（任意参数尺寸或多模态）满血执行矩阵计算，唯有企业本地私钥能瞬间解密出最终结论。' 
+                : 'Cloud models (any scale & multimodal) reason over cipher matrices; only your local key can decode the final output.'}
             </p>
           </div>
 
         </div>
 
         {/* Live Contrast Strip */}
-        <div className="rounded-2xl bg-[#0B0F19] border border-[#1E2638] p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="rounded-2xl bg-[#080C16] border border-blue-900/40 p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <button
               onClick={() => setActiveTab('safecompute')}
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                 activeTab === 'safecompute'
-                  ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
+                  ? 'bg-blue-600/25 text-blue-300 border border-blue-500/50 shadow-[0_0_15px_rgba(37,99,235,0.25)]'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
@@ -96,7 +96,7 @@ export const HowItWorksSimple: React.FC<HowItWorksSimpleProps> = ({ onExploreTec
 
           <div className="text-xs font-mono">
             {activeTab === 'safecompute' ? (
-              <span className="text-emerald-400 flex items-center gap-1.5">
+              <span className="text-blue-400 flex items-center gap-1.5 font-medium">
                 <Lock className="w-3.5 h-3.5" />
                 <span>{isZh ? '云端显存仅见无序数学噪声 (0 字节泄漏 · 保密特权 100% 留存)' : 'Cloud VRAM sees only noise (0 bytes leaked)'}</span>
               </span>
@@ -111,7 +111,7 @@ export const HowItWorksSimple: React.FC<HowItWorksSimpleProps> = ({ onExploreTec
           {onExploreTechnology && (
             <button
               onClick={onExploreTechnology}
-              className="text-cyan-400 hover:text-cyan-300 text-xs font-mono font-medium flex items-center gap-1 transition-colors cursor-pointer shrink-0"
+              className="text-blue-400 hover:text-blue-300 text-xs font-mono font-medium flex items-center gap-1 transition-colors cursor-pointer shrink-0"
             >
               <span>{isZh ? '技术实现' : 'Technical Details'}</span>
               <ArrowRight className="w-3 h-3" />

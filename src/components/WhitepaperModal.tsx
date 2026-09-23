@@ -27,9 +27,9 @@ export const WhitepaperModal: React.FC<WhitepaperModalProps> = ({ isOpen, onClos
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-[#1E2638] bg-[#0E131E]">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-blue-900/40 bg-[#080C16]">
           <div className="flex items-center gap-3">
-            <FileText className="w-5 h-5 text-cyan-400" />
+            <FileText className="w-5 h-5 text-blue-400" />
             <div>
               <h3 className="text-base font-bold text-white font-display">
                 {wp.title}
@@ -43,14 +43,14 @@ export const WhitepaperModal: React.FC<WhitepaperModalProps> = ({ isOpen, onClos
           <div className="flex items-center gap-2">
             <div
               title={language.startsWith('zh') ? '白皮书全文受知识产权与保密协议保护，暂不开放公开下载' : 'Technical whitepaper restricted under NDA access'}
-              className="px-3.5 py-1.5 rounded-lg bg-[#0B0E14] border border-[#1E2638] text-xs font-mono text-slate-500 flex items-center gap-1.5 cursor-not-allowed opacity-75"
+              className="px-3.5 py-1.5 rounded-lg bg-[#060B16] border border-blue-950 text-xs font-mono text-slate-500 flex items-center gap-1.5 cursor-not-allowed opacity-75"
             >
               <Lock className="w-3.5 h-3.5 text-slate-500" />
               <span>{language.startsWith('zh') ? 'PDF 下载暂未开放 (NDA 受限)' : 'PDF Download Restricted (NDA)'}</span>
             </div>
             <button
               onClick={onClose}
-              className="p-1.5 rounded-lg text-slate-400 hover:text-white bg-[#0B0E14] border border-[#1E2638] cursor-pointer"
+              className="p-1.5 rounded-lg text-slate-400 hover:text-white bg-[#060B16] border border-blue-900/40 cursor-pointer"
             >
               <X className="w-4 h-4" />
             </button>
@@ -58,12 +58,12 @@ export const WhitepaperModal: React.FC<WhitepaperModalProps> = ({ isOpen, onClos
         </div>
 
         {/* Navigation Tabs */}
-        <div className="flex border-b border-[#1E2638] bg-[#0B0E14] px-6 text-xs font-mono overflow-x-auto">
+        <div className="flex border-b border-blue-900/30 bg-[#060B16] px-6 text-xs font-mono overflow-x-auto">
           <button
             onClick={() => setActiveSection('abstract')}
             className={`py-3 px-4 border-b-2 font-medium cursor-pointer transition-colors ${
               activeSection === 'abstract'
-                ? 'border-cyan-400 text-cyan-300 bg-[#121722]'
+                ? 'border-blue-400 text-blue-300 bg-[#090E1A]'
                 : 'border-transparent text-slate-400 hover:text-white'
             }`}
           >
@@ -73,7 +73,7 @@ export const WhitepaperModal: React.FC<WhitepaperModalProps> = ({ isOpen, onClos
             onClick={() => setActiveSection('covarpri_math')}
             className={`py-3 px-4 border-b-2 font-medium cursor-pointer transition-colors ${
               activeSection === 'covarpri_math'
-                ? 'border-cyan-400 text-cyan-300 bg-[#121722]'
+                ? 'border-blue-400 text-blue-300 bg-[#090E1A]'
                 : 'border-transparent text-slate-400 hover:text-white'
             }`}
           >
@@ -83,7 +83,7 @@ export const WhitepaperModal: React.FC<WhitepaperModalProps> = ({ isOpen, onClos
             onClick={() => setActiveSection('attestation')}
             className={`py-3 px-4 border-b-2 font-medium cursor-pointer transition-colors ${
               activeSection === 'attestation'
-                ? 'border-cyan-400 text-cyan-300 bg-[#121722]'
+                ? 'border-blue-400 text-blue-300 bg-[#090E1A]'
                 : 'border-transparent text-slate-400 hover:text-white'
             }`}
           >
@@ -93,7 +93,7 @@ export const WhitepaperModal: React.FC<WhitepaperModalProps> = ({ isOpen, onClos
             onClick={() => setActiveSection('trustgate_spec')}
             className={`py-3 px-4 border-b-2 font-medium cursor-pointer transition-colors ${
               activeSection === 'trustgate_spec'
-                ? 'border-cyan-400 text-cyan-300 bg-[#121722]'
+                ? 'border-blue-400 text-blue-300 bg-[#090E1A]'
                 : 'border-transparent text-slate-400 hover:text-white'
             }`}
           >
@@ -111,7 +111,7 @@ export const WhitepaperModal: React.FC<WhitepaperModalProps> = ({ isOpen, onClos
               </h4>
               <p>{wp.abstractContent.p1}</p>
               <p>{wp.abstractContent.p2}</p>
-              <div className="p-4 rounded-xl bg-[#0B0E14] border border-emerald-500/30 text-emerald-300 text-xs font-mono">
+              <div className="p-4 rounded-xl bg-[#060B16] border border-blue-500/30 text-blue-300 text-xs font-mono shadow-[0_0_15px_rgba(28,43,255,0.1)]">
                 SafeCompute resolves the trilemma of Security, Latency, and Accuracy by unifying algebraic covariant obfuscation (CovarPri) with verified hardware execution boundaries (EnclaveX).
               </div>
             </div>
@@ -125,7 +125,7 @@ export const WhitepaperModal: React.FC<WhitepaperModalProps> = ({ isOpen, onClos
               <p>
                 Traditional Fully Homomorphic Encryption (FHE) incurs a 1000×–10,000× computational slowdown, rendering agent tool execution unviable. CovarPri demonstrates that linear projections inside transformer multi-head attention can be protected through isometric permutation matrices.
               </p>
-              <div className="p-4 rounded-2xl bg-[#0B0E14] border border-[#1E2638] font-mono text-xs text-cyan-300 space-y-2">
+              <div className="p-4 rounded-2xl bg-[#060B16] border border-blue-900/40 font-mono text-xs text-blue-300 space-y-2">
                 <p className="text-slate-400">// Token-level Covariant Transformation</p>
                 <p>X' = X · P_A + N(0, σ²)</p>
                 <p>W'_Q = P_A⁻¹ · W_Q · P_B</p>
@@ -163,8 +163,8 @@ export const WhitepaperModal: React.FC<WhitepaperModalProps> = ({ isOpen, onClos
               <p>
                 TrustGate functions as an inline proxy between the LLM output parser and the enterprise API execution gateway.
               </p>
-              <div className="p-4 rounded-xl bg-[#0B0E14] border border-amber-500/30 text-xs text-slate-300 space-y-2">
-                <span className="font-bold text-amber-400">Deterministic Enforcement:</span>
+              <div className="p-4 rounded-xl bg-[#060B16] border border-blue-500/30 text-xs text-slate-300 space-y-2">
+                <span className="font-bold text-blue-400">Deterministic Enforcement:</span>
                 <p>Every tool invocation is evaluated against a dynamic finite state machine (FSM). Unauthorized schema mutations, prompt injections, and privilege escalations are rejected in under 2.0 milliseconds.</p>
               </div>
             </div>
@@ -173,9 +173,9 @@ export const WhitepaperModal: React.FC<WhitepaperModalProps> = ({ isOpen, onClos
         </div>
 
         {/* Modal Footer */}
-        <div className="px-6 py-4 bg-[#0E131E] border-t border-[#1E2638] flex items-center justify-between text-xs text-slate-400 font-mono">
+        <div className="px-6 py-4 bg-[#080C16] border-t border-blue-900/40 flex items-center justify-between text-xs text-slate-400 font-mono">
           <span>SafeCompute Technical Whitepaper · Revision 1.04</span>
-          <span className="text-emerald-400">Status: Peer-Reviewed</span>
+          <span className="text-blue-400">Status: Peer-Reviewed</span>
         </div>
 
       </div>

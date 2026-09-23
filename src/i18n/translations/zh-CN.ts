@@ -578,6 +578,7 @@ export const zhCN: TranslationSchema = {
     whitepaperBtn: '下载技术白皮书 (PDF)',
     talkToArchitectBtn: '预约首席架构师技术闭门交流',
     pills: {
+      monitor: '实时代数混淆监控仪',
       onion: '洋葱三层纵深防御',
       matrix: '4D 产品杀手级矩阵',
       benchmarks: '全尺寸多模态生产级基准实测',

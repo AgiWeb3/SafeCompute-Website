@@ -1,6 +1,7 @@
 import React from 'react';
 import { Lock } from 'lucide-react';
 import { useLanguage } from '../i18n';
+import { SafeComputeLogo } from './SafeComputeLogo';
 
 interface FooterProps {
   onOpenWhitepaper: () => void;
@@ -22,19 +23,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWhitepaper, onOpenDemo, on
           <div className="md:col-span-2 space-y-4">
             <button 
               onClick={() => onNavigate('home')}
-              className="flex items-center gap-3 cursor-pointer text-left group"
+              className="cursor-pointer text-left group transition-transform active:scale-[0.98]"
             >
-              <div className="relative w-8 h-8 flex items-center justify-center">
-                <svg viewBox="0 0 44 44" className="w-8 h-8 group-hover:rotate-45 transition-transform duration-500">
-                  <circle cx="22" cy="22" r="19" fill="none" stroke="#10B981" strokeWidth="2" strokeDasharray="5 3" opacity="0.8" />
-                  <circle cx="22" cy="22" r="13" fill="none" stroke="#00F2FE" strokeWidth="2.5" />
-                  <circle cx="22" cy="22" r="7" fill="#10B981" fillOpacity="0.4" stroke="#34D399" strokeWidth="2" />
-                  <circle cx="22" cy="22" r="2.5" fill="#FFFFFF" />
-                </svg>
-              </div>
-              <span className="text-lg font-bold text-white font-display">
-                SafeCompute
-              </span>
+              <SafeComputeLogo size="md" />
             </button>
             
             <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
@@ -42,7 +33,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWhitepaper, onOpenDemo, on
             </p>
 
             <div className="flex items-center gap-2 text-slate-500 font-mono text-xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
               <span>{f.cities.join(' · ')}</span>
             </div>
           </div>
@@ -56,7 +47,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWhitepaper, onOpenDemo, on
               <li>
                 <button 
                   onClick={() => onNavigate('home')}
-                  className="hover:text-cyan-300 transition-colors cursor-pointer text-left"
+                  className="hover:text-blue-400 transition-colors cursor-pointer text-left"
                 >
                   {f.links.overview}
                 </button>
@@ -64,7 +55,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWhitepaper, onOpenDemo, on
               <li>
                 <button 
                   onClick={() => onNavigate('home', 'how-it-works')}
-                  className="hover:text-cyan-300 transition-colors cursor-pointer text-left"
+                  className="hover:text-blue-400 transition-colors cursor-pointer text-left"
                 >
                   {f.links.howItWorks}
                 </button>
@@ -72,7 +63,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWhitepaper, onOpenDemo, on
               <li>
                 <button 
                   onClick={() => onNavigate('home', 'sovereignty-layer')}
-                  className="hover:text-cyan-300 transition-colors cursor-pointer text-left"
+                  className="hover:text-blue-400 transition-colors cursor-pointer text-left"
                 >
                   {f.links.sovereigntyLayer}
                 </button>
@@ -80,7 +71,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWhitepaper, onOpenDemo, on
               <li>
                 <button 
                   onClick={() => onNavigate('home', 'solutions')}
-                  className="hover:text-cyan-300 transition-colors cursor-pointer text-left"
+                  className="hover:text-blue-400 transition-colors cursor-pointer text-left"
                 >
                   {f.links.lawFirms}
                 </button>
@@ -88,7 +79,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWhitepaper, onOpenDemo, on
               <li>
                 <button 
                   onClick={() => onNavigate('home', 'solutions')}
-                  className="hover:text-cyan-300 transition-colors cursor-pointer text-left"
+                  className="hover:text-blue-400 transition-colors cursor-pointer text-left"
                 >
                   {f.links.financialServices}
                 </button>
@@ -105,7 +96,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWhitepaper, onOpenDemo, on
               <li>
                 <button 
                   onClick={() => onNavigate('technology', 'onion-architecture')}
-                  className="hover:text-cyan-300 transition-colors cursor-pointer text-left"
+                  className="hover:text-blue-400 transition-colors cursor-pointer text-left"
                 >
                   {f.links.onionDefense}
                 </button>
@@ -113,7 +104,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWhitepaper, onOpenDemo, on
               <li>
                 <button 
                   onClick={() => onNavigate('technology', 'onion-architecture')}
-                  className="hover:text-cyan-300 transition-colors cursor-pointer text-left"
+                  className="hover:text-blue-400 transition-colors cursor-pointer text-left"
                 >
                   {f.links.actionFirewall}
                 </button>
@@ -121,7 +112,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWhitepaper, onOpenDemo, on
               <li>
                 <button 
                   onClick={() => onNavigate('technology', 'product-matrix')}
-                  className="hover:text-cyan-300 transition-colors cursor-pointer text-left"
+                  className="hover:text-blue-400 transition-colors cursor-pointer text-left"
                 >
                   {f.links.productMatrix}
                 </button>
@@ -129,7 +120,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWhitepaper, onOpenDemo, on
               <li>
                 <button 
                   onClick={() => onNavigate('technology', 'benchmarks')}
-                  className="hover:text-cyan-300 transition-colors cursor-pointer text-left"
+                  className="hover:text-blue-400 transition-colors cursor-pointer text-left"
                 >
                   {f.links.universalBenchmarks}
                 </button>
@@ -137,7 +128,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWhitepaper, onOpenDemo, on
               <li>
                 <button 
                   onClick={() => onNavigate('technology', 'developer-experience')}
-                  className="hover:text-cyan-300 transition-colors cursor-pointer text-left"
+                  className="hover:text-blue-400 transition-colors cursor-pointer text-left"
                 >
                   {f.links.sdk}
                 </button>
@@ -166,7 +157,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWhitepaper, onOpenDemo, on
               <li>
                 <button 
                   onClick={onOpenDemo}
-                  className="hover:text-cyan-300 transition-colors cursor-pointer text-left"
+                  className="hover:text-blue-400 transition-colors cursor-pointer text-left"
                 >
                   {f.links.scheduleDemo}
                 </button>
@@ -174,7 +165,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWhitepaper, onOpenDemo, on
               <li>
                 <button 
                   onClick={onOpenWhitepaper}
-                  className="hover:text-cyan-300 transition-colors cursor-pointer text-left"
+                  className="hover:text-blue-400 transition-colors cursor-pointer text-left"
                 >
                   {f.links.soc2Audit}
                 </button>
@@ -182,7 +173,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWhitepaper, onOpenDemo, on
               <li>
                 <button 
                   onClick={onOpenWhitepaper}
-                  className="hover:text-cyan-300 transition-colors cursor-pointer text-left"
+                  className="hover:text-blue-400 transition-colors cursor-pointer text-left"
                 >
                   {f.links.securityArchitecture}
                 </button>

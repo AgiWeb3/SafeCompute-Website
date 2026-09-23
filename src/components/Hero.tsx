@@ -30,8 +30,8 @@ export const Hero: React.FC<HeroProps> = ({
       >
         <FluidShaderCanvas 
           className="w-full h-full"
-          color1="rgb(18, 20, 32)"     // Deep obsidian navy
-          color2="rgb(28, 70, 255)"    // High-luminous electric sapphire & cyan
+          color1="rgb(10, 14, 26)"     // Deep void midnight navy
+          color2="rgb(28, 43, 255)"    // Authentic Capital & Code Electric Royal Blue (RGB 28, 43, 255)
           color3="rgb(255, 255, 255)"   // Crisp silk white highlight
           speed={0.45}
           scale={0.45}
@@ -46,7 +46,7 @@ export const Hero: React.FC<HeroProps> = ({
         {/* Hero Top Bar: Clean Meta Badge & Status */}
         <div className="flex flex-wrap items-center justify-between gap-4 mb-6 sm:mb-10">
           <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/[0.05] border border-white/10 backdrop-blur-md text-xs font-mono text-slate-300">
-            <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse shadow-[0_0_8px_#10B981]" />
+            <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse shadow-[0_0_8px_#3B82F6]" />
             <span className="text-white font-medium">{t.hero.badgePre}</span>
             <span className="text-white/20">/</span>
             <span className="text-slate-400 hidden sm:inline">{t.hero.badgePost}</span>
@@ -67,7 +67,7 @@ export const Hero: React.FC<HeroProps> = ({
             
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white font-display leading-[1.12] text-balance">
               {t.hero.titleLine1}
-              <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-white via-emerald-200 to-cyan-300 drop-shadow-[0_0_35px_rgba(52,211,153,0.3)]">
+              <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-white via-sky-200 to-blue-400 drop-shadow-[0_0_35px_rgba(59,130,246,0.35)]">
                 {t.hero.titleLine2}
               </span>
             </h1>
@@ -80,7 +80,7 @@ export const Hero: React.FC<HeroProps> = ({
             <div className="flex flex-wrap items-center gap-4 pt-2 w-full sm:w-auto">
               <button
                 onClick={onOpenDemo}
-                className="group relative w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-3.5 rounded-full bg-white text-black font-semibold text-sm hover:bg-emerald-300 transition-all duration-300 shadow-[0_0_30px_rgba(255,255,255,0.22)] hover:shadow-[0_0_40px_rgba(52,211,153,0.5)] cursor-pointer active:scale-95"
+                className="group relative w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-3.5 rounded-full bg-white text-black font-semibold text-sm hover:bg-sky-200 transition-all duration-300 shadow-[0_0_30px_rgba(255,255,255,0.22)] hover:shadow-[0_0_40px_rgba(59,130,246,0.5)] cursor-pointer active:scale-95"
               >
                 <span>{t.hero.bookDemoBtn}</span>
                 <span className="w-6 h-6 rounded-full bg-black text-white flex items-center justify-center group-hover:bg-black/90 group-hover:translate-x-0.5 transition-all">
@@ -100,19 +100,19 @@ export const Hero: React.FC<HeroProps> = ({
             {/* Trust checkmarks in plain business language */}
             <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-slate-300 font-medium">
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-sky-400 shrink-0" />
                 <span>{t.hero.checks.zeroPlaintext}</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-sky-400 shrink-0" />
                 <span>{t.hero.checks.actionFirewall}</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-sky-400 shrink-0" />
                 <span>{t.hero.checks.preservePrivilege}</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-sky-400 shrink-0" />
                 <span>{t.hero.checks.subSecondSpeed}</span>
               </div>
             </div>
@@ -130,7 +130,7 @@ export const Hero: React.FC<HeroProps> = ({
               <div className="absolute -bottom-5 -right-3 hidden sm:block select-none pointer-events-auto z-20">
                 <button
                   onClick={onExploreTechnology}
-                  className="group relative w-24 h-24 rounded-full border border-white/20 bg-[#06080E]/85 backdrop-blur-xl flex items-center justify-center cursor-pointer hover:border-emerald-400/60 transition-colors shadow-[0_8px_24px_rgba(0,0,0,0.6)]"
+                  className="group relative w-24 h-24 rounded-full border border-white/20 bg-[#06080E]/85 backdrop-blur-xl flex items-center justify-center cursor-pointer hover:border-blue-400/60 transition-colors shadow-[0_8px_24px_rgba(0,0,0,0.6)]"
                   title={isZh ? '探索技术底层' : 'Explore Tech Architecture'}
                 >
                   <svg 
@@ -142,7 +142,7 @@ export const Hero: React.FC<HeroProps> = ({
                       d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0"
                       fill="none"
                     />
-                    <text className="text-[7.5px] font-mono tracking-[0.2em] uppercase fill-slate-300 group-hover:fill-emerald-300 transition-colors">
+                    <text className="text-[7.5px] font-mono tracking-[0.2em] uppercase fill-slate-300 group-hover:fill-sky-300 transition-colors">
                       <textPath href="#textCircleSmall">
                         {isZh ? '• 代数混淆 • 零明文 • 机密计算 ' : '• ZERO-PLAINTEXT • SAFE COMPUTE '}
                       </textPath>

@@ -38,22 +38,22 @@ export const HomePage: React.FC<HomePageProps> = ({
         onExploreTechnology={onNavigateToTechnology}
       />
 
-      <SectionSeparator label={isZh ? '工作原理' : 'HOW IT WORKS'} variant="cyan" />
+      <SectionSeparator label={isZh ? '工作原理' : 'HOW IT WORKS'} variant="blue" />
 
       {/* 2. 3-Step Flow */}
       <HowItWorksSimple onExploreTechnology={onNavigateToTechnology} />
 
-      <SectionSeparator label={isZh ? '行业痛点' : 'THE DILEMMA'} variant="amber" />
+      <SectionSeparator label={isZh ? '行业痛点' : 'THE DILEMMA'} variant="blue" />
 
       {/* 3. The 4 Enterprise Blockers */}
       <ProblemAbyss />
 
-      <SectionSeparator label={isZh ? '行业方案' : 'SOLUTIONS'} variant="emerald" />
+      <SectionSeparator label={isZh ? '行业方案' : 'SOLUTIONS'} variant="blue" />
 
       {/* 4. Industry Solutions */}
       <SolutionsSection onOpenDemo={onOpenDemo} />
 
-      <SectionSeparator label={isZh ? '技术架构' : 'ARCHITECTURE'} variant="cyan" />
+      <SectionSeparator label={isZh ? '技术架构' : 'ARCHITECTURE'} variant="blue" />
 
       {/* 5. Tech Bridge */}
       <HomeTechBridge

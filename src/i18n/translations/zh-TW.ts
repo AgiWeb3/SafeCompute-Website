@@ -578,6 +578,7 @@ export const zhTW: TranslationSchema = {
     whitepaperBtn: '下載技術白皮書 (PDF)',
     talkToArchitectBtn: '預約首席架構師技術閉門交流',
     pills: {
+      monitor: '即時代數混淆監控儀',
       onion: '洋蔥三層縱深防禦',
       matrix: '4D 產品殺手級矩陣',
       benchmarks: '全尺寸多模態生產級基準實測',
