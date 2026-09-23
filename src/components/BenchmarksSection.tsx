@@ -60,7 +60,7 @@ export const BenchmarksSection: React.FC = () => {
   const bench = t.benchmarks;
 
   return (
-    <section id="benchmarks" className="py-24 bg-[#0B0E14] relative border-t border-[#1E2638]">
+    <section id="benchmarks" className="py-24 bg-[#0B0E14] relative">
       {/* Glow backgrounds */}
       <div className="absolute top-1/3 left-1/3 w-[600px] h-[600px] bg-emerald-500/5 blur-[160px] pointer-events-none rounded-full" />
 

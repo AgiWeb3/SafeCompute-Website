@@ -10,7 +10,7 @@ export const ComparisonMatrix: React.FC = () => {
   const selectedData = mat.rows[selectedRow] || mat.rows[3];
 
   return (
-    <section id="comparison-matrix" className="py-24 bg-[#0B0E14] relative border-t border-[#1E2638]">
+    <section id="comparison-matrix" className="py-24 bg-[#0B0E14] relative">
       {/* Background soft glow */}
       <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-500/5 blur-[160px] pointer-events-none rounded-full" />
 

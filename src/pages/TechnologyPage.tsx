@@ -115,7 +115,7 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({
                   : 'bg-[#090E1A] text-slate-400 hover:text-white border border-blue-900/30'
               }`}
             >
-              All Tech Modules
+              {tech.pills.all}
             </button>
 
             <button
@@ -127,7 +127,7 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({
               }`}
             >
               <Radio className="w-3.5 h-3.5 text-blue-400" />
-              <span>{language.startsWith('zh') ? '双轨实证模拟' : 'Dual-Stream Simulator'}</span>
+              <span>{tech.pills.sim}</span>
             </button>
 
             <button
@@ -253,20 +253,20 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({
         <div className="rounded-3xl bg-gradient-to-r from-[#060B16] via-[#091122] to-[#060B16] border border-blue-900/40 p-8 sm:p-12 text-center relative overflow-hidden shadow-2xl">
           <div className="relative z-10 max-w-3xl mx-auto space-y-4">
             <span className="text-xs font-mono uppercase tracking-widest text-blue-400">
-              Architectural Briefing &amp; SDK Access
+              {tech.banner.tag}
             </span>
             <h3 className="text-2xl sm:text-4xl font-extrabold text-white font-display">
-              Ready to Deploy Sovereign Agent Compute in Your Stack?
+              {tech.banner.title}
             </h3>
             <p className="text-sm text-slate-300 leading-relaxed">
-              Schedule a private session with our cryptographic engineering team to evaluate threat models, review mathematical invariance proofs, or provision a staging cluster.
+              {tech.banner.desc}
             </p>
             <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
               <button
                 onClick={onOpenDemo}
                 className="px-6 py-3 rounded-full text-xs font-semibold text-black bg-white hover:bg-sky-200 transition-colors shadow-lg cursor-pointer active:scale-95"
               >
-                Schedule Technical Deep Dive
+                {tech.banner.ctaBtn}
               </button>
               <button
                 disabled
@@ -274,7 +274,7 @@ export const TechnologyPage: React.FC<TechnologyPageProps> = ({
                 className="px-5 py-3 rounded-xl text-xs font-mono text-slate-500 bg-[#060911] border border-blue-950 cursor-not-allowed opacity-60 flex items-center gap-1.5"
               >
                 <Lock className="w-3.5 h-3.5 text-slate-500" />
-                <span>{language.startsWith('zh') ? '白皮书 (暂不公开)' : 'Whitepaper (Restricted)'}</span>
+                <span>{tech.banner.whitepaperBtn}</span>
               </button>
             </div>
           </div>

@@ -433,11 +433,20 @@ export interface TranslationSchema {
     whitepaperBtn: string;
     talkToArchitectBtn: string;
     pills: {
+      all: string;
+      sim: string;
       monitor: string;
       onion: string;
       matrix: string;
       benchmarks: string;
       sdk: string;
+    };
+    banner: {
+      tag: string;
+      title: string;
+      desc: string;
+      ctaBtn: string;
+      whitepaperBtn: string;
     };
   };
 }

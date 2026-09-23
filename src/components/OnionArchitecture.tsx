@@ -50,7 +50,7 @@ export const OnionArchitecture: React.FC = () => {
   const currentPillarData = on.pillars[activePillar];
 
   return (
-    <section id="onion-architecture" className="py-24 bg-[#060911] relative border-t border-[#1E2638]">
+    <section id="onion-architecture" className="py-24 bg-[#060911] relative">
       {/* Glow backgrounds */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-blue-600/10 blur-[180px] pointer-events-none rounded-full" />
 
